@@ -1,12 +1,12 @@
 <?php
 
-namespace VendorName\Skeleton\Commands;
+namespace Hypersender\Hypersender\Commands;
 
 use Illuminate\Console\Command;
 
-class SkeletonCommand extends Command
+class HypersenderCommand extends Command
 {
-    public $signature = 'skeleton';
+    public $signature = 'hypersender-laravel';
 
     public $description = 'My command';
 
