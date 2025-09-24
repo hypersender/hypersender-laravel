@@ -2,9 +2,9 @@
 
 namespace Hypersender\Hypersender;
 
+use Hypersender\Hypersender\Commands\HypersenderCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use Hypersender\Hypersender\Commands\HypersenderCommand;
 
 class HypersenderServiceProvider extends PackageServiceProvider
 {
@@ -21,5 +21,12 @@ class HypersenderServiceProvider extends PackageServiceProvider
             ->hasViews()
             ->hasMigration('create_hypersender_laravel_table')
             ->hasCommand(HypersenderCommand::class);
+    }
+
+    public function packageRegistered(): void
+    {
+        $this->app->singleton(HypersenderClient::class, function ($app) {
+            return new HypersenderClient($app['config']);
+        });
     }
 }

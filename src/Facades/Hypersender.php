@@ -2,15 +2,16 @@
 
 namespace Hypersender\Hypersender\Facades;
 
+use Hypersender\Hypersender\HypersenderClient;
 use Illuminate\Support\Facades\Facade;
 
 /**
- * @see \Hypersender\Hypersender\Hypersender
+ * @see \Hypersender\Hypersender\HypersenderClient
  */
 class Hypersender extends Facade
 {
     protected static function getFacadeAccessor(): string
     {
-        return \Hypersender\Hypersender\Hypersender::class;
+        return HypersenderClient::class;
     }
 }
