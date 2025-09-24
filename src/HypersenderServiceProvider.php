@@ -2,9 +2,9 @@
 
 namespace Hypersender\Hypersender;
 
+use Hypersender\Hypersender\Commands\HypersenderCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use Hypersender\Hypersender\Commands\HypersenderCommand;
 
 class HypersenderServiceProvider extends PackageServiceProvider
 {

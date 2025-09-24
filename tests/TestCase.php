@@ -2,9 +2,9 @@
 
 namespace Hypersender\Hypersender\Tests;
 
+use Hypersender\Hypersender\HypersenderServiceProvider;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Orchestra\Testbench\TestCase as Orchestra;
-use Hypersender\Hypersender\HypersenderServiceProvider;
 
 class TestCase extends Orchestra
 {
