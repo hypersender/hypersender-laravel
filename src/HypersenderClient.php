@@ -3,6 +3,7 @@
 namespace Hypersender\Hypersender;
 
 use Illuminate\Http\Client\Response;
+use Illuminate\Http\UploadedFile;
 
 class HypersenderClient extends AbstractClient
 {
@@ -38,7 +39,12 @@ class HypersenderClient extends AbstractClient
         ]);
     }
 
-    public function sendLinkCustomPreview(
+    /**
+     * Send a link custom preview by providing a URL for the image
+     *
+     * @param string previewImageUrl
+     **/
+    public function sendLinkCustomPreviewUrl(
         string $chatId,
         string $text,
         ?string $replyTo,
@@ -58,6 +64,33 @@ class HypersenderClient extends AbstractClient
             'preview_url' => $previewUrl,
             'preview_image_url' => $previewImageUrl,
         ]);
+    }
+
+    /**
+     * Send a link custom preview by providing the image it self as a file upload.
+     *
+     * @param  UploadedFile  $previewImageFile  The image file.
+     **/
+    public function sendLinkCustomPreviewFile(
+        string $chatId,
+        string $text,
+        ?string $replyTo,
+        ?bool $highQuality,
+        string $previewTitle,
+        string $previewDescription,
+        string $previewUrl,
+        UploadedFile $previewImageFile,
+    ): Response {
+        return $this->postMultipart('/send-link-custom-preview', [
+            'chatId' => $chatId,
+            'text' => $text,
+            'reply_to' => $replyTo,
+            'high_quality' => $highQuality,
+            'preview_title' => $previewTitle,
+            'preview_description' => $previewDescription,
+            'preview_url' => $previewUrl,
+            'preview_image_file' => $previewImageFile,
+        ], 'preview_image_file');
     }
 
     public function sendFile(

@@ -33,5 +33,8 @@ class TestCase extends Orchestra
             (include $migration->getRealPath())->up();
          }
          */
+
+        config()->set('hypersender-laravel.base_url', 'https://app.hypersender.com/api/whatsapp/v1');
+        config()->set('hypersender-laravel.instance_id', 'test-instance');
     }
 }
