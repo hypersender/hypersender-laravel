@@ -22,7 +22,7 @@ abstract class AbstractClient
         $this->instanceId = Config::get('hypersender-laravel.instance_id', env('HYPERSENDER_INSTANCE_ID'));
     }
 
-    protected function request(string $contentType = 'application/json'): PendingRequest
+    protected function request(string $contentType = 'application/json', array $query = []): PendingRequest
     {
         $headers = [
             'Authorization' => 'Bearer '.$this->apiKey,
@@ -32,32 +32,33 @@ abstract class AbstractClient
         ];
 
         return Http::baseUrl($this->baseUrl)
+            ->withQueryParameters($query)
             ->withHeaders($headers);
     }
 
-    protected function post(string $uri, array $payload): Response
+    protected function post(string $uri, array $payload, ?array $query = []): Response
     {
-        return $this->request()->asJson()->post($this->endpoint($uri), $payload);
+        return $this->request('application/json', $query)->asJson()->post($this->endpoint($uri), $payload);
     }
 
-    protected function postMultipart(string $uri, array $payload, string $fileField): Response
+    protected function postMultipart(string $uri, array $payload, string $fileField, ?array $query = []): Response
     {
-        return $this->request('multipart/form-data')->asMultipart()->post($this->endpoint($uri), $payload, $fileField);
+        return $this->request('multipart/form-data', $query)->asMultipart()->post($this->endpoint($uri), $payload, $fileField);
     }
 
-    protected function get(string $uri, array $query = []): Response
+    protected function get(string $uri, ?array $query = []): Response
     {
-        return $this->request()->asJson()->get($this->endpoint($uri), $query);
+        return $this->request('application/json', $query)->asJson()->get($this->endpoint($uri), $query);
     }
 
-    protected function put(string $uri, array $payload): Response
+    protected function put(string $uri, array $payload, ?array $query = []): Response
     {
-        return $this->request()->asJson()->put($this->endpoint($uri), $payload);
+        return $this->request('application/json', $query)->asJson()->put($this->endpoint($uri), $payload);
     }
 
-    protected function delete(string $uri, array $payload): Response
+    protected function delete(string $uri, array $payload, ?array $query = []): Response
     {
-        return $this->request()->asJson()->delete($this->endpoint($uri), $payload);
+        return $this->request('application/json', $query)->asJson()->delete($this->endpoint($uri), $payload);
     }
 
     protected function endpoint(string $uri): string
