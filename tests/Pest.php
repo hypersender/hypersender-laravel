@@ -59,3 +59,17 @@ function readChatsEndpointPayload(): array
 
     return json_decode($payload, true);
 }
+
+function sendPollEndpointPayload(): array
+{
+    $payload = file_get_contents(__DIR__.'/fixtures/send-poll.json');
+
+    return json_decode($payload, true);
+}
+
+function sendLocationEndpointPayload(): array
+{
+    $payload = file_get_contents(__DIR__.'/fixtures/send-location.json');
+
+    return json_decode($payload, true);
+}
