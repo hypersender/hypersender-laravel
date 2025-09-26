@@ -2,7 +2,8 @@
 
 namespace Hypersender\Hypersender;
 
-use Hypersender\Hypersender\Commands\HypersenderCommand;
+use Hypersender\Hypersender\Clients\Sms\HypersenderSmsClient;
+use Hypersender\Hypersender\Clients\Whatsapp\HypersenderWhatsappClient;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 
@@ -10,23 +11,26 @@ class HypersenderServiceProvider extends PackageServiceProvider
 {
     public function configurePackage(Package $package): void
     {
-        /*
-         * This class is a Package Service Provider
-         *
-         * More info: https://github.com/spatie/laravel-package-tools
-         */
         $package
             ->name('hypersender-laravel')
-            ->hasConfigFile()
-            ->hasViews()
-            ->hasMigration('create_hypersender_laravel_table')
-            ->hasCommand(HypersenderCommand::class);
+            ->hasConfigFile();
     }
 
     public function packageRegistered(): void
     {
-        $this->app->singleton(HypersenderClient::class, function ($app) {
-            return new HypersenderClient($app['config']);
+        $this->app->singleton(HypersenderWhatsappClient::class, function ($app) {
+            return new HypersenderWhatsappClient;
+        });
+
+        $this->app->singleton(HypersenderSmsClient::class, function ($app) {
+            return new HypersenderSmsClient;
+        });
+
+        $this->app->singleton(HypersenderManager::class, function ($app) {
+            return new HypersenderManager(
+                $app->make(HypersenderWhatsappClient::class),
+                $app->make(HypersenderSmsClient::class),
+            );
         });
     }
 }
