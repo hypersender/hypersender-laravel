@@ -2,16 +2,19 @@
 
 namespace Hypersender\Hypersender\Facades;
 
-use Hypersender\Hypersender\HypersenderClient;
+use Hypersender\Hypersender\HypersenderManager;
 use Illuminate\Support\Facades\Facade;
 
 /**
- * @see \Hypersender\Hypersender\HypersenderClient
+ * @method static \Hypersender\Hypersender\Clients\Whatsapp\HypersenderWhatsappClient whatsapp()
+ * @method static \Hypersender\Hypersender\Clients\Sms\HypersenderSmsClient sms()
+ *
+ * @see \Hypersender\Hypersender\HypersenderManager
  */
 class Hypersender extends Facade
 {
     protected static function getFacadeAccessor(): string
     {
-        return HypersenderClient::class;
+        return HypersenderManager::class;
     }
 }
