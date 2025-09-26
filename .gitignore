@@ -31,3 +31,4 @@ testbench.yaml
 /docs
 /coverage
 .env
+.DS_Store

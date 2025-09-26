@@ -1,11 +1,12 @@
 <?php
 
-namespace Hypersender\Hypersender;
+namespace Hypersender\Hypersender\Clients\Whatsapp;
 
+use Hypersender\Hypersender\AbstractClient;
 use Illuminate\Http\Client\Response;
 use Illuminate\Http\UploadedFile;
 
-class HypersenderClient extends AbstractClient
+class HypersenderWhatsappClient extends AbstractClient
 {
     public function sendTextSafe(
         string $chatId,
@@ -373,11 +374,4 @@ class HypersenderClient extends AbstractClient
             'reply_to' => $replyTo,
         ]);
     }
-
-    // TODO: Add the react to message method
-
-    // TODO: Add the star message method
-
-    // TODO: Add the delete message method
-
 }
