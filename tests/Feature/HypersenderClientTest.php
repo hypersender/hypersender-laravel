@@ -413,3 +413,79 @@ it('can stop typing', function () {
 
     expect($response->json())->toBe(['result' => true]);
 });
+
+it('can send a poll', function () {
+    $payload = sendPollEndpointPayload();
+
+    Http::fake([
+        "{$this->endpoint}/{$this->instanceId}/send-poll" => Http::response($payload, 200),
+    ]);
+
+    $response = Hypersender::sendPoll('123@c.us', null, ['name' => 'Sample Poll', 'options' => ['Option 1', 'Option 2', 'Option 3'], 'multipleAnswers' => true]);
+
+    Http::assertSent(function (Request $request) {
+        return $request->url() === "{$this->endpoint}/{$this->instanceId}/send-poll"
+            && $request->data() === [
+                'chatId' => '123@c.us',
+                'reply_to' => null,
+                'poll' => [
+                    'name' => 'Sample Poll',
+                    'options' => [
+                        'Option 1',
+                        'Option 2',
+                        'Option 3',
+                    ],
+                    'multipleAnswers' => true,
+                ],
+            ];
+    });
+
+    expect($response->json())->toBe($payload);
+});
+
+it('can send a contact card', function () {
+    Http::fake([
+        "{$this->endpoint}/{$this->instanceId}/send-contact-card" => Http::response([], 200),
+    ]);
+
+    $response = Hypersender::sendContactCard('123@c.us', ['vcard' => 'vcard', 'fullName' => 'Full Name', 'organization' => 'Organization', 'phoneNumber' => '1234567890', 'whatsappId' => '1234567890']);
+
+    Http::assertSent(function (Request $request) {
+        return $request->url() === "{$this->endpoint}/{$this->instanceId}/send-contact-card"
+            && $request->data() === [
+                'chatId' => '123@c.us',
+                'contacts' => [
+                    'vcard' => 'vcard',
+                    'fullName' => 'Full Name',
+                    'organization' => 'Organization',
+                    'phoneNumber' => '1234567890',
+                    'whatsappId' => '1234567890',
+                ],
+            ];
+    });
+
+    expect($response->json())->toBe([]);
+});
+
+it('can send a location', function () {
+    $payload = sendLocationEndpointPayload();
+
+    Http::fake([
+        "{$this->endpoint}/{$this->instanceId}/send-location" => Http::response($payload, 200),
+    ]);
+
+    $response = Hypersender::sendLocation('123@c.us', 38.8937255, -77.0969763, 'Washington, D.C.', 'reply-id');
+
+    Http::assertSent(function (Request $request) {
+        return $request->url() === "{$this->endpoint}/{$this->instanceId}/send-location"
+            && $request->data() === [
+                'chatId' => '123@c.us',
+                'latitude' => 38.8937255,
+                'longitude' => -77.0969763,
+                'title' => 'Washington, D.C.',
+                'reply_to' => 'reply-id',
+            ];
+    });
+
+    expect($response->json())->toBe($payload);
+});

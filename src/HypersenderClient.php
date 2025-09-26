@@ -320,11 +320,59 @@ class HypersenderClient extends AbstractClient
         ]);
     }
 
-    // TODO: Add the send poll method
+    /**
+     * Send a poll
+     *
+     * @param array poll - [name: string, options: array, multipleAnswers: bool]
+     **/
+    public function sendPoll(
+        string $chatId,
+        ?string $replyTo,
+        array $poll,
+    ): Response {
+        return $this->post('/send-poll', [
+            'chatId' => $chatId,
+            'reply_to' => $replyTo,
+            'poll' => $poll,
+        ]);
+    }
 
-    // TODO: Add the send contact card method
+    /**
+     * Send a contact card
+     *
+     * @param array contacts - [vcard: string, fullName: string, organization: string, phoneNumber: number, whatsappId: number]
+     **/
+    public function sendContactCard(string $chatId, array $contacts): Response
+    {
+        return $this->post('/send-contact-card', [
+            'chatId' => $chatId,
+            'contacts' => $contacts,
+        ]);
+    }
 
-    // TODO: Add the send location method
+    /**
+     * Send a location
+     *
+     * @param float latitude
+     * @param float longitude
+     * @param string title
+     * @param string|null replyTo
+     **/
+    public function sendLocation(
+        string $chatId,
+        float $latitude,
+        float $longitude,
+        string $title,
+        ?string $replyTo = null,
+    ): Response {
+        return $this->post('/send-location', [
+            'chatId' => $chatId,
+            'latitude' => $latitude,
+            'longitude' => $longitude,
+            'title' => $title,
+            'reply_to' => $replyTo,
+        ]);
+    }
 
     // TODO: Add the react to message method
 
