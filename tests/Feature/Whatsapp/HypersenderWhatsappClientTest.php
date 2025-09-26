@@ -18,7 +18,7 @@ describe('send text', function () {
             "{$this->endpoint}/{$this->instanceId}/send-text-safe" => Http::response($payload['with_preview'], 200),
         ]);
 
-        $response = Hypersender::sendTextSafe('123@c.us', 'Hello', 'reply-id', true, true);
+        $response = Hypersender::whatsapp()->sendTextSafe('123@c.us', 'Hello', 'reply-id', true, true);
 
         Http::assertSent(function (Request $request) {
             return $request->url() === "{$this->endpoint}/{$this->instanceId}/send-text-safe"
@@ -41,7 +41,7 @@ describe('send text', function () {
             "{$this->endpoint}/{$this->instanceId}/send-text-safe" => Http::response($payload['without_preview'], 200),
         ]);
 
-        $response = Hypersender::sendTextSafe('123@c.us', 'Hello', 'reply-id', false, false);
+        $response = Hypersender::whatsapp()->sendTextSafe('123@c.us', 'Hello', 'reply-id', false, false);
 
         Http::assertSent(function (Request $request) {
             return $request->url() === "{$this->endpoint}/{$this->instanceId}/send-text-safe"
@@ -64,7 +64,7 @@ describe('send text', function () {
             "{$this->endpoint}/{$this->instanceId}/send-text" => Http::response($payload['with_preview'], 200),
         ]);
 
-        $response = Hypersender::sendText('123@c.us', 'Hello', null, true, true);
+        $response = Hypersender::whatsapp()->sendText('123@c.us', 'Hello', null, true, true);
 
         Http::assertSent(function (Request $request) {
             return $request->url() === "{$this->endpoint}/{$this->instanceId}/send-text"
@@ -87,7 +87,7 @@ describe('send text', function () {
             "{$this->endpoint}/{$this->instanceId}/send-text" => Http::response($payload['without_preview'], 200),
         ]);
 
-        $response = Hypersender::sendText('123@c.us', 'Hello', null, false, false);
+        $response = Hypersender::whatsapp()->sendText('123@c.us', 'Hello', null, false, false);
 
         Http::assertSent(function (Request $request) {
             return $request->url() === "{$this->endpoint}/{$this->instanceId}/send-text"
@@ -114,7 +114,7 @@ describe('send link custom preview', function () {
 
         $previewImageFile = UploadedFile::fake()->image('test.png');
 
-        $response = Hypersender::sendLinkCustomPreviewFile('123@c.us', 'Hello', null, true, 'Title', 'Description', 'https://example.com', $previewImageFile);
+        $response = Hypersender::whatsapp()->sendLinkCustomPreviewFile('123@c.us', 'Hello', null, true, 'Title', 'Description', 'https://example.com', $previewImageFile);
 
         Http::assertSent(function (Request $request) use ($previewImageFile) {
             return $request->url() === "{$this->endpoint}/{$this->instanceId}/send-link-custom-preview"
@@ -131,7 +131,7 @@ describe('send link custom preview', function () {
             "{$this->endpoint}/{$this->instanceId}/send-link-custom-preview" => Http::response($payload, 200),
         ]);
 
-        $response = Hypersender::sendLinkCustomPreviewUrl('123@c.us', 'Hello', 'reply-id', true, 'Title', 'Description', 'https://example.com', 'https://example.com/image.png');
+        $response = Hypersender::whatsapp()->sendLinkCustomPreviewUrl('123@c.us', 'Hello', 'reply-id', true, 'Title', 'Description', 'https://example.com', 'https://example.com/image.png');
 
         Http::assertSent(function (Request $request) {
             return $request->url() === "{$this->endpoint}/{$this->instanceId}/send-link-custom-preview"
@@ -159,7 +159,7 @@ describe('send file', function () {
             "{$this->endpoint}/{$this->instanceId}/send-file" => Http::response($payload, 200),
         ]);
 
-        $response = Hypersender::sendFileUrl('123@c.us', 'https://example.com/file.pdf', 'file.pdf', 'application/pdf', 'Caption', 'reply-id');
+        $response = Hypersender::whatsapp()->sendFileUrl('123@c.us', 'https://example.com/file.pdf', 'file.pdf', 'application/pdf', 'Caption', 'reply-id');
 
         Http::assertSent(function (Request $request) {
             return $request->url() === "{$this->endpoint}/{$this->instanceId}/send-file"
@@ -185,7 +185,7 @@ describe('send file', function () {
 
         $file = UploadedFile::fake()->create('document.pdf', 100);
 
-        $response = Hypersender::sendFile('123@c.us', $file, 'document.pdf', 'application/pdf', 'Caption', 'reply-id');
+        $response = Hypersender::whatsapp()->sendFile('123@c.us', $file, 'document.pdf', 'application/pdf', 'Caption', 'reply-id');
 
         Http::assertSent(function (Request $request) use ($file) {
             return $request->url() === "{$this->endpoint}/{$this->instanceId}/send-file"
@@ -204,7 +204,7 @@ describe('send image', function () {
             "{$this->endpoint}/{$this->instanceId}/send-image" => Http::response($payload, 200),
         ]);
 
-        $response = Hypersender::sendImageUrl('123@c.us', 'https://example.com/image.png', 'image.png', 'image/png', 'Caption', 'reply-id');
+        $response = Hypersender::whatsapp()->sendImageUrl('123@c.us', 'https://example.com/image.png', 'image.png', 'image/png', 'Caption', 'reply-id');
 
         Http::assertSent(function (Request $request) {
             return $request->url() === "{$this->endpoint}/{$this->instanceId}/send-image"
@@ -230,7 +230,7 @@ describe('send image', function () {
 
         $file = UploadedFile::fake()->image('photo.jpg');
 
-        $response = Hypersender::sendImageFile('123@c.us', $file, 'photo.jpg', 'image/jpeg', 'Caption', 'reply-id');
+        $response = Hypersender::whatsapp()->sendImageFile('123@c.us', $file, 'photo.jpg', 'image/jpeg', 'Caption', 'reply-id');
 
         Http::assertSent(function (Request $request) use ($file) {
             return $request->url() === "{$this->endpoint}/{$this->instanceId}/send-image"
@@ -249,7 +249,7 @@ describe('send video', function () {
             "{$this->endpoint}/{$this->instanceId}/send-video" => Http::response($payload, 200),
         ]);
 
-        $response = Hypersender::sendVideoUrl('123@c.us', 'https://example.com/video.mp4', true, 'Caption', 'reply-id');
+        $response = Hypersender::whatsapp()->sendVideoUrl('123@c.us', 'https://example.com/video.mp4', true, 'Caption', 'reply-id');
 
         Http::assertSent(function (Request $request) {
             return $request->url() === "{$this->endpoint}/{$this->instanceId}/send-video"
@@ -274,7 +274,7 @@ describe('send video', function () {
 
         $file = UploadedFile::fake()->create('video.mp4', 1000);
 
-        $response = Hypersender::sendVideoFile('123@c.us', $file, true, 'Caption', 'reply-id');
+        $response = Hypersender::whatsapp()->sendVideoFile('123@c.us', $file, true, 'Caption', 'reply-id');
 
         Http::assertSent(function (Request $request) use ($file) {
             return $request->url() === "{$this->endpoint}/{$this->instanceId}/send-video"
@@ -293,7 +293,7 @@ describe('send voice', function () {
             "{$this->endpoint}/{$this->instanceId}/send-voice" => Http::response($payload, 200),
         ]);
 
-        $response = Hypersender::sendVoiceUrl('123@c.us', 'https://example.com/voice.ogg', 'Caption', 'reply-id');
+        $response = Hypersender::whatsapp()->sendVoiceUrl('123@c.us', 'https://example.com/voice.ogg', 'Caption', 'reply-id');
 
         Http::assertSent(function (Request $request) {
             return $request->url() === "{$this->endpoint}/{$this->instanceId}/send-voice"
@@ -317,7 +317,7 @@ describe('send voice', function () {
 
         $file = UploadedFile::fake()->create('voice.ogg', 100);
 
-        $response = Hypersender::sendVoiceFile('123@c.us', $file, 'Caption', 'reply-id');
+        $response = Hypersender::whatsapp()->sendVoiceFile('123@c.us', $file, 'Caption', 'reply-id');
 
         Http::assertSent(function (Request $request) use ($file) {
             return $request->url() === "{$this->endpoint}/{$this->instanceId}/send-voice"
@@ -335,7 +335,7 @@ it('can forward a message', function () {
         "{$this->endpoint}/{$this->instanceId}/forward-message" => Http::response($payload, 200),
     ]);
 
-    $response = Hypersender::forwardMessage('123@c.us', 'message-id');
+    $response = Hypersender::whatsapp()->forwardMessage('123@c.us', 'message-id');
 
     Http::assertSent(function (Request $request) {
         return $request->url() === "{$this->endpoint}/{$this->instanceId}/forward-message"
@@ -353,7 +353,7 @@ it('can send a seen receipt', function () {
         "{$this->endpoint}/{$this->instanceId}/send-seen" => Http::response([], 200),
     ]);
 
-    $response = Hypersender::sendSeen('123@c.us', 'message-id', 'participant-id');
+    $response = Hypersender::whatsapp()->sendSeen('123@c.us', 'message-id', 'participant-id');
 
     Http::assertSent(function (Request $request) {
         return $request->url() === "{$this->endpoint}/{$this->instanceId}/send-seen"
@@ -374,7 +374,7 @@ it('can read a chat', function () {
         "{$this->endpoint}/{$this->instanceId}/read-chat?messages=10&days=2" => Http::response($payload, 200),
     ]);
 
-    $response = Hypersender::readChat('123@c.us', 10, 2);
+    $response = Hypersender::whatsapp()->readChat('123@c.us', 10, 2);
 
     Http::assertSent(function (Request $request) {
         return $request->url() === "{$this->endpoint}/{$this->instanceId}/read-chat?messages=10&days=2"
@@ -389,7 +389,7 @@ it('can start typing', function () {
         "{$this->endpoint}/{$this->instanceId}/start-typing" => Http::response(['result' => true], 200),
     ]);
 
-    $response = Hypersender::startTyping('123@c.us');
+    $response = Hypersender::whatsapp()->startTyping('123@c.us');
 
     Http::assertSent(function (Request $request) {
         return $request->url() === "{$this->endpoint}/{$this->instanceId}/start-typing"
@@ -404,7 +404,7 @@ it('can stop typing', function () {
         "{$this->endpoint}/{$this->instanceId}/stop-typing" => Http::response(['result' => true], 200),
     ]);
 
-    $response = Hypersender::stopTyping('123@c.us');
+    $response = Hypersender::whatsapp()->stopTyping('123@c.us');
 
     Http::assertSent(function (Request $request) {
         return $request->url() === "{$this->endpoint}/{$this->instanceId}/stop-typing"
@@ -421,7 +421,7 @@ it('can send a poll', function () {
         "{$this->endpoint}/{$this->instanceId}/send-poll" => Http::response($payload, 200),
     ]);
 
-    $response = Hypersender::sendPoll('123@c.us', null, ['name' => 'Sample Poll', 'options' => ['Option 1', 'Option 2', 'Option 3'], 'multipleAnswers' => true]);
+    $response = Hypersender::whatsapp()->sendPoll('123@c.us', null, ['name' => 'Sample Poll', 'options' => ['Option 1', 'Option 2', 'Option 3'], 'multipleAnswers' => true]);
 
     Http::assertSent(function (Request $request) {
         return $request->url() === "{$this->endpoint}/{$this->instanceId}/send-poll"
@@ -448,7 +448,7 @@ it('can send a contact card', function () {
         "{$this->endpoint}/{$this->instanceId}/send-contact-card" => Http::response([], 200),
     ]);
 
-    $response = Hypersender::sendContactCard('123@c.us', ['vcard' => 'vcard', 'fullName' => 'Full Name', 'organization' => 'Organization', 'phoneNumber' => '1234567890', 'whatsappId' => '1234567890']);
+    $response = Hypersender::whatsapp()->sendContactCard('123@c.us', ['vcard' => 'vcard', 'fullName' => 'Full Name', 'organization' => 'Organization', 'phoneNumber' => '1234567890', 'whatsappId' => '1234567890']);
 
     Http::assertSent(function (Request $request) {
         return $request->url() === "{$this->endpoint}/{$this->instanceId}/send-contact-card"
@@ -474,7 +474,7 @@ it('can send a location', function () {
         "{$this->endpoint}/{$this->instanceId}/send-location" => Http::response($payload, 200),
     ]);
 
-    $response = Hypersender::sendLocation('123@c.us', 38.8937255, -77.0969763, 'Washington, D.C.', 'reply-id');
+    $response = Hypersender::whatsapp()->sendLocation('123@c.us', 38.8937255, -77.0969763, 'Washington, D.C.', 'reply-id');
 
     Http::assertSent(function (Request $request) {
         return $request->url() === "{$this->endpoint}/{$this->instanceId}/send-location"
