@@ -374,4 +374,43 @@ class HypersenderWhatsappClient extends AbstractClient
             'reply_to' => $replyTo,
         ]);
     }
+
+    /**
+     * React to a message
+     *
+     * @param string messageId - e.g. "true_111111111111@c.us_3EB08F6AD2A432386EFA0E"
+     * @param string reaction - e.g. "🥵"
+     **/
+    public function reactToMessage(string $messageId, string $reaction): Response
+    {
+        return $this->post('/react-to-message', [
+            'messageId' => $messageId,
+            'reaction' => $reaction,
+        ]);
+    }
+
+    /**
+     * Star a message
+     *
+     * @param string messageId - e.g. "true_111111111111@c.us_3EB08F6AD2A432386EFA0E"
+     * @param bool star - true to star, false to unstar
+     **/
+    public function star(string $chatId, string $messageId, bool $star): Response
+    {
+        return $this->post('/star-message', [
+            'chatId' => $chatId,
+            'messageId' => $messageId,
+            'star' => $star,
+        ]);
+    }
+
+    public function deleteMessage(string $chatId, string $messageId): Response
+    {
+        $query = [
+            'chatId' => $chatId,
+            'messageId' => $messageId,
+        ];
+
+        return $this->delete('/delete-message', [], $query);
+    }
 }
