@@ -73,3 +73,17 @@ function sendLocationEndpointPayload(): array
 
     return json_decode($payload, true);
 }
+
+function reactToMessageEndpointPayload(): array
+{
+    $payload = file_get_contents(__DIR__.'/fixtures/react-to-message.json');
+
+    return json_decode($payload, true);
+}
+
+function deleteMessageEndpointPayload(): array
+{
+    $payload = file_get_contents(__DIR__.'/fixtures/delete-message.json');
+
+    return json_decode($payload, true);
+}

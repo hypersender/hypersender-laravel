@@ -489,3 +489,52 @@ it('can send a location', function () {
 
     expect($response->json())->toBe($payload);
 });
+
+it('can react to a message', function () {
+    $payload = reactToMessageEndpointPayload();
+
+    Http::fake([
+        "{$this->endpoint}/{$this->instanceId}/react-to-message" => Http::response($payload, 200),
+    ]);
+
+    $response = Hypersender::whatsapp()->reactToMessage('message-id', '👍');
+
+    Http::assertSent(function (Request $request) {
+        return $request->url() === "{$this->endpoint}/{$this->instanceId}/react-to-message"
+            && $request->data() === ['messageId' => 'message-id', 'reaction' => '👍'];
+    });
+
+    expect($response->json())->toBe($payload);
+});
+
+it('can star a message', function () {
+    Http::fake([
+        "{$this->endpoint}/{$this->instanceId}/star-message" => Http::response([], 200),
+    ]);
+
+    $response = Hypersender::whatsapp()->star('123@c.us', 'message-id', true);
+
+    Http::assertSent(function (Request $request) {
+        return $request->url() === "{$this->endpoint}/{$this->instanceId}/star-message"
+            && $request->data() === ['chatId' => '123@c.us', 'messageId' => 'message-id', 'star' => true];
+    });
+
+    expect($response->json())->toBe([]);
+});
+
+it('can delete a message', function () {
+    $payload = deleteMessageEndpointPayload();
+
+    Http::fake([
+        "{$this->endpoint}/{$this->instanceId}/delete-message?chatId=123%40c.us&messageId=message-id" => Http::response($payload, 200),
+    ]);
+
+    $response = Hypersender::whatsapp()->deleteMessage('123@c.us', 'message-id');
+
+    Http::assertSent(function (Request $request) {
+        return $request->url() === "{$this->endpoint}/{$this->instanceId}/delete-message?chatId=123%40c.us&messageId=message-id"
+            && $request->data() === [];
+    });
+
+    expect($response->json())->toBe($payload);
+});
