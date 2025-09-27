@@ -404,7 +404,7 @@ class HypersenderWhatsappClient extends AbstractClient
         ]);
     }
 
-    public function deleteMessage(string $chatId, string $messageId, array $query = []): Response
+    public function deleteMessage(string $chatId, string $messageId): Response
     {
         $query = [
             'chatId' => $chatId,
