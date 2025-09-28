@@ -8,8 +8,7 @@ return [
     'instance_id' => env('HYPERSENDER_INSTANCE_ID'),
 
     /* WhatsApp */
-    'whatsapp_webhook_authorization' => env('HYPERSENDER_WHATSAPP_WEBHOOK_AUTHORIZATION', 'authorization'),
-    'whatsapp_webhook_authorization_secret' => env('HYPERSENDER_WHATSAPP_WEBHOOK_AUTHORIZATION_SECRET', ''),
+    'whatsapp_webhook_authorization_secret' => env('HYPERSENDER_WHATSAPP_WEBHOOK_AUTHORIZATION_SECRET'),
     'whatsapp_webhook_route' => env('HYPERSENDER_WHATSAPP_WEBHOOK_ROUTE', 'whatsapp/webhook'),
     'whatsapp_webhook_job' => env('HYPERSENDER_WHATSAPP_WEBHOOK_JOB', ProcessWhatsappWebhookJob::class),
     'whatsapp_queue' => env('HYPERSENDER_WHATSAPP_QUEUE', 'default'),

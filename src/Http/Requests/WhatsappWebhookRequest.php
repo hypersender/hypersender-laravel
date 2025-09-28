@@ -24,11 +24,14 @@ class WhatsappWebhookRequest extends FormRequest
     public function withValidator(Validator $validator): void
     {
         $validator->after(function (Validator $validator) {
-            $authorization = config('hypersender-laravel.whatsapp_webhook_authorization');
             $authorizationSecret = config('hypersender-laravel.whatsapp_webhook_authorization_secret');
 
-            if ($this->header($authorization) !== $authorizationSecret) {
-                $validator->errors()->add('authorization', 'Invalid authorization header. Please set HYPERSENDER_WHATSAPP_WEBHOOK_AUTHORIZATION_SECRET in your environment.');
+            if ($authorizationSecret === null || $authorizationSecret === '') {
+                return;
+            }
+
+            if ($this->header('authorization') !== $authorizationSecret) {
+                abort(401, 'Unauthorized WhatsApp webhook request. Please check your authorization secret.');
             }
         });
     }
@@ -40,8 +43,6 @@ class WhatsappWebhookRequest extends FormRequest
 
     public function secret(): ?string
     {
-        return $this->header(
-            config('hypersender-laravel.whatsapp_webhook_authorization')
-        );
+        return $this->header('authorization');
     }
 }

@@ -7,84 +7,84 @@ uses(TestCase::class)->in(__DIR__);
 // WhatsApp
 function sendTextEndpointPayload(): array
 {
-    $payload = file_get_contents(__DIR__.'/fixtures/send-text.json');
+    $payload = file_get_contents(__DIR__.'/fixtures/Whatsapp/send-text.json');
 
     return json_decode($payload, true);
 }
 
 function sendLinkCustomPreviewPayload(): array
 {
-    $payload = file_get_contents(__DIR__.'/fixtures/send-link-custom-preview.json');
+    $payload = file_get_contents(__DIR__.'/fixtures/Whatsapp/send-link-custom-preview.json');
 
     return json_decode($payload, true);
 }
 
 function sendFileEndpointPayload(): array
 {
-    $payload = file_get_contents(__DIR__.'/fixtures/send-file.json');
+    $payload = file_get_contents(__DIR__.'/fixtures/Whatsapp/send-file.json');
 
     return json_decode($payload, true);
 }
 
 function sendImageEndpointPayload(): array
 {
-    $payload = file_get_contents(__DIR__.'/fixtures/send-image.json');
+    $payload = file_get_contents(__DIR__.'/fixtures/Whatsapp/send-image.json');
 
     return json_decode($payload, true);
 }
 
 function sendVideoEndpointPayload(): array
 {
-    $payload = file_get_contents(__DIR__.'/fixtures/send-video.json');
+    $payload = file_get_contents(__DIR__.'/fixtures/Whatsapp/send-video.json');
 
     return json_decode($payload, true);
 }
 
 function sendAudioEndpointPayload(): array
 {
-    $payload = file_get_contents(__DIR__.'/fixtures/send-audio.json');
+    $payload = file_get_contents(__DIR__.'/fixtures/Whatsapp/send-audio.json');
 
     return json_decode($payload, true);
 }
 
 function forwardMessageEndpointPayload(): array
 {
-    $payload = file_get_contents(__DIR__.'/fixtures/forward-message.json');
+    $payload = file_get_contents(__DIR__.'/fixtures/Whatsapp/forward-message.json');
 
     return json_decode($payload, true);
 }
 
 function readChatsEndpointPayload(): array
 {
-    $payload = file_get_contents(__DIR__.'/fixtures/read-chats.json');
+    $payload = file_get_contents(__DIR__.'/fixtures/Whatsapp/read-chats.json');
 
     return json_decode($payload, true);
 }
 
 function sendPollEndpointPayload(): array
 {
-    $payload = file_get_contents(__DIR__.'/fixtures/send-poll.json');
+    $payload = file_get_contents(__DIR__.'/fixtures/Whatsapp/send-poll.json');
 
     return json_decode($payload, true);
 }
 
 function sendLocationEndpointPayload(): array
 {
-    $payload = file_get_contents(__DIR__.'/fixtures/send-location.json');
+    $payload = file_get_contents(__DIR__.'/fixtures/Whatsapp/send-location.json');
 
     return json_decode($payload, true);
 }
 
 function reactToMessageEndpointPayload(): array
 {
-    $payload = file_get_contents(__DIR__.'/fixtures/react-to-message.json');
+    $payload = file_get_contents(__DIR__.'/fixtures/Whatsapp/react-to-message.json');
 
     return json_decode($payload, true);
 }
 
 function deleteMessageEndpointPayload(): array
 {
-    $payload = file_get_contents(__DIR__.'/fixtures/delete-message.json');
+    $payload = file_get_contents(__DIR__.'/fixtures/Whatsapp/delete-message.json');
 
     return json_decode($payload, true);
 }
