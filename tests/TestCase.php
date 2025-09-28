@@ -28,13 +28,9 @@ class TestCase extends Orchestra
     {
         config()->set('database.default', 'testing');
 
-        /*
-         foreach (\Illuminate\Support\Facades\File::allFiles(__DIR__ . '/database/migrations') as $migration) {
-            (include $migration->getRealPath())->up();
-         }
-         */
-
         config()->set('hypersender-laravel.base_url', 'https://app.hypersender.com/api/whatsapp/v1');
         config()->set('hypersender-laravel.instance_id', 'test-instance');
+        config()->set('hypersender-laravel.whatsapp_webhook_authorization', 'authorization');
+        config()->set('hypersender-laravel.whatsapp_webhook_authorization_secret', 'x-whatsapp-webhook');
     }
 }

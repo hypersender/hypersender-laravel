@@ -22,7 +22,7 @@ class WhatsappWebhookController extends Controller
 
         $jobClass::dispatch(
             payload: $request->payload(),
-            signature: $request->signature(),
+            secret: $request->secret(),
         );
 
         return response()->json(['status' => 'ok']);
