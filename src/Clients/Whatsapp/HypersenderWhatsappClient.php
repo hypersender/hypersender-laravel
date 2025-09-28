@@ -8,6 +8,12 @@ use Illuminate\Http\UploadedFile;
 
 class HypersenderWhatsappClient extends AbstractClient
 {
+    /**
+     * Send a text message with link preview disabled and all links removed
+     *
+     * @param bool|null linkPreview - Whether to show link preview (default: false)
+     * @param bool|null linkPreviewHighQuality - Whether to use high quality images for link preview (default: false)
+     **/
     public function sendTextSafe(
         string $chatId,
         string $text,
@@ -24,6 +30,12 @@ class HypersenderWhatsappClient extends AbstractClient
         ]);
     }
 
+    /**
+     * Send a text message with link preview disabled and all links removed
+     *
+     * @param bool|null linkPreview - Whether to show link preview (default: false)
+     * @param bool|null linkPreviewHighQuality - Whether to use high quality images for link preview (default: false)
+     **/
     public function sendText(
         string $chatId,
         string $text,
