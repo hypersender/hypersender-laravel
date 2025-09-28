@@ -25,11 +25,10 @@ it('dispatches WhatsApp webhook events', function (\Closure $payloadFactory, str
     ];
 
     $route = config('hypersender-laravel.whatsapp_webhook_route');
-    $authorization = config('hypersender-laravel.whatsapp_webhook_authorization');
     $authorizationSecret = config('hypersender-laravel.whatsapp_webhook_authorization_secret');
 
     $response = $this->postJson("/{$route}", $payload, [
-        $authorization => $authorizationSecret,
+        'authorization' => $authorizationSecret,
     ]);
 
     $response->assertOk();
