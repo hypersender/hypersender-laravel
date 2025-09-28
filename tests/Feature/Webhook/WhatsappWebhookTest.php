@@ -8,11 +8,13 @@ use Illuminate\Support\Facades\Event;
 it('dispatches PresenceUpdate event via webhook', function () {
     Event::fake();
 
+    $payload = presenceUpdateWebhookPayload();
+
     Config::set('hypersender-laravel.whatsapp_webhook_job', ProcessWhatsappWebhookJob::class);
 
     $payload = [
-        'event' => 'presence.update',
-        'data' => ['foo' => 'bar'],
+        'event' => $payload['event'],
+        'data' => $payload['data'],
     ];
 
     $route = config('hypersender-laravel.whatsapp_webhook_route');

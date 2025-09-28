@@ -4,6 +4,7 @@ use Hypersender\Hypersender\Tests\TestCase;
 
 uses(TestCase::class)->in(__DIR__);
 
+// WhatsApp
 function sendTextEndpointPayload(): array
 {
     $payload = file_get_contents(__DIR__.'/fixtures/send-text.json');
@@ -84,6 +85,14 @@ function reactToMessageEndpointPayload(): array
 function deleteMessageEndpointPayload(): array
 {
     $payload = file_get_contents(__DIR__.'/fixtures/delete-message.json');
+
+    return json_decode($payload, true);
+}
+
+// WhatsApp Webhook
+function presenceUpdateWebhookPayload(): array
+{
+    $payload = file_get_contents(__DIR__.'/fixtures/webhook/presence-update.json');
 
     return json_decode($payload, true);
 }

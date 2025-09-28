@@ -1,11 +1,11 @@
 <?php
 
-namespace Hypersender\Hypersender\Events;
+namespace Hypersender\Hypersender\Events\Whatsapp;
 
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class PresenceUpdate
+class MessageAck
 {
     use Dispatchable, SerializesModels;
 
