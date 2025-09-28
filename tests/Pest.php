@@ -96,3 +96,52 @@ function presenceUpdateWebhookPayload(): array
 
     return json_decode($payload, true);
 }
+
+function messageAnyWebhookPayload(): array
+{
+    $payload = file_get_contents(__DIR__.'/fixtures/webhook/message-any.json');
+
+    return json_decode($payload, true);
+}
+
+function messageReactionWebhookPayload(): array
+{
+    $payload = file_get_contents(__DIR__.'/fixtures/webhook/message-reaction.json');
+
+    return json_decode($payload, true);
+}
+
+function messageAckWebhookPayload(): array
+{
+    $payload = file_get_contents(__DIR__.'/fixtures/webhook/message-ack.json');
+
+    return json_decode($payload, true);
+}
+
+function messageWaitingWebhookPayload(): array
+{
+    $payload = file_get_contents(__DIR__.'/fixtures/webhook/message-waiting.json');
+
+    return json_decode($payload, true);
+}
+
+function messageRevokedWebhookPayload(): array
+{
+    $payload = file_get_contents(__DIR__.'/fixtures/webhook/message-revoked.json');
+
+    return json_decode($payload, true);
+}
+
+function pollVoteWebhookPayload(): array
+{
+    $payload = file_get_contents(__DIR__.'/fixtures/webhook/poll-vote.json');
+
+    return json_decode($payload, true);
+}
+
+function pollVoteFailedWebhookPayload(): array
+{
+    $payload = file_get_contents(__DIR__.'/fixtures/webhook/poll-vote-failed.json');
+
+    return json_decode($payload, true);
+}
