@@ -5,9 +5,19 @@ namespace Hypersender\Hypersender\Clients\Whatsapp;
 use Hypersender\Hypersender\AbstractClient;
 use Illuminate\Http\Client\Response;
 use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Config;
 
 class HypersenderWhatsappClient extends AbstractClient
 {
+    public function __construct()
+    {
+        $baseUrl = Config::get('hypersender-laravel.whatsapp_base_url', env('HYPERSENDER_WHATSAPP_BASE_URL'));
+        $apiKey = Config::get('hypersender-laravel.whatsapp_api_key', env('HYPERSENDER_WHATSAPP_API_KEY'));
+        $instanceId = Config::get('hypersender-laravel.whatsapp_instance_id', env('HYPERSENDER_WHATSAPP_INSTANCE_ID'));
+
+        parent::__construct($baseUrl, $apiKey, $instanceId);
+    }
+
     /**
      * Send a text message with link preview disabled and all links removed
      *
@@ -395,7 +405,7 @@ class HypersenderWhatsappClient extends AbstractClient
      **/
     public function reactToMessage(string $messageId, string $reaction): Response
     {
-        return $this->post('/react-to-message', [
+        return $this->put('/react-to-message', [
             'messageId' => $messageId,
             'reaction' => $reaction,
         ]);
@@ -409,7 +419,7 @@ class HypersenderWhatsappClient extends AbstractClient
      **/
     public function star(string $chatId, string $messageId, bool $star): Response
     {
-        return $this->post('/star-message', [
+        return $this->put('/star-message', [
             'chatId' => $chatId,
             'messageId' => $messageId,
             'star' => $star,

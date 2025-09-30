@@ -4,23 +4,15 @@ namespace Hypersender\Hypersender;
 
 use Illuminate\Http\Client\PendingRequest;
 use Illuminate\Http\Client\Response;
-use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Http;
 
 abstract class AbstractClient
 {
-    protected string $baseUrl;
-
-    protected ?string $apiKey;
-
-    protected ?string $instanceId;
-
-    public function __construct()
-    {
-        $this->baseUrl = Config::get('hypersender-laravel.base_url', env('HYPERSENDER_BASE_URL'));
-        $this->apiKey = Config::get('hypersender-laravel.api_key', env('HYPERSENDER_API_KEY'));
-        $this->instanceId = Config::get('hypersender-laravel.instance_id', env('HYPERSENDER_INSTANCE_ID'));
-    }
+    public function __construct(
+        protected string $baseUrl,
+        protected ?string $apiKey,
+        protected ?string $instanceId,
+    ) {}
 
     protected function request(string $contentType = 'application/json', array $query = []): PendingRequest
     {
