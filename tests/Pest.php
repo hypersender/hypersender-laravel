@@ -145,3 +145,39 @@ function pollVoteFailedWebhookPayload(): array
 
     return json_decode($payload, true);
 }
+
+// SMS
+function indexMessagesEndpointPayload(): array
+{
+    $payload = file_get_contents(__DIR__.'/fixtures/Sms/index-messages.json');
+
+    return json_decode($payload, true);
+}
+
+function sendSmsMessageEndpointPayload(): array
+{
+    $payload = file_get_contents(__DIR__.'/fixtures/Sms/send-message.json');
+
+    return json_decode($payload, true);
+}
+
+function indexMessageThreadsEndpointPayload(): array
+{
+    $payload = file_get_contents(__DIR__.'/fixtures/Sms/index-message-threads.json');
+
+    return json_decode($payload, true);
+}
+
+function editMessageThreadEndpointPayload(): array
+{
+    $payload = file_get_contents(__DIR__.'/fixtures/Sms/edit-message-thread.json');
+
+    return json_decode($payload, true);
+}
+
+function getHeartbeatsEndpointPayload(): array
+{
+    $payload = file_get_contents(__DIR__.'/fixtures/Sms/get-heartbeats.json');
+
+    return json_decode($payload, true);
+}

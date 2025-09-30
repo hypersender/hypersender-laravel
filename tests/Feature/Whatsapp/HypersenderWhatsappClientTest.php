@@ -6,8 +6,8 @@ use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Http;
 
 beforeEach(function () {
-    $this->endpoint = config('hypersender-laravel.base_url');
-    $this->instanceId = config('hypersender-laravel.instance_id');
+    $this->endpoint = config('hypersender-laravel.whatsapp_base_url');
+    $this->instanceId = config('hypersender-laravel.whatsapp_instance_id');
 });
 
 describe('send text', function () {
