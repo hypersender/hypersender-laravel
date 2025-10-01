@@ -17,6 +17,10 @@ class HypersenderServiceProvider extends PackageServiceProvider
             ->name('hypersender-laravel')
             ->hasConfigFile()
             ->hasRoutes('webhook');
+
+        $this->publishes([
+            __DIR__.'/../config/hypersender-laravel.php' => config_path('hypersender-laravel.php'),
+        ], 'hypersender-laravel-config');
     }
 
     public function packageRegistered(): void
