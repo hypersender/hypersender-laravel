@@ -92,56 +92,56 @@ function deleteMessageEndpointPayload(): array
 // WhatsApp Webhook
 function presenceUpdateWebhookPayload(): array
 {
-    $payload = file_get_contents(__DIR__.'/fixtures/webhook/presence-update.json');
+    $payload = file_get_contents(__DIR__.'/fixtures/Whatsapp/Webhook/presence-update.json');
 
     return json_decode($payload, true);
 }
 
 function messageAnyWebhookPayload(): array
 {
-    $payload = file_get_contents(__DIR__.'/fixtures/webhook/message-any.json');
+    $payload = file_get_contents(__DIR__.'/fixtures/Whatsapp/Webhook/message-any.json');
 
     return json_decode($payload, true);
 }
 
 function messageReactionWebhookPayload(): array
 {
-    $payload = file_get_contents(__DIR__.'/fixtures/webhook/message-reaction.json');
+    $payload = file_get_contents(__DIR__.'/fixtures/Whatsapp/Webhook/message-reaction.json');
 
     return json_decode($payload, true);
 }
 
 function messageAckWebhookPayload(): array
 {
-    $payload = file_get_contents(__DIR__.'/fixtures/webhook/message-ack.json');
+    $payload = file_get_contents(__DIR__.'/fixtures/Whatsapp/Webhook/message-ack.json');
 
     return json_decode($payload, true);
 }
 
 function messageWaitingWebhookPayload(): array
 {
-    $payload = file_get_contents(__DIR__.'/fixtures/webhook/message-waiting.json');
+    $payload = file_get_contents(__DIR__.'/fixtures/Whatsapp/Webhook/message-waiting.json');
 
     return json_decode($payload, true);
 }
 
 function messageRevokedWebhookPayload(): array
 {
-    $payload = file_get_contents(__DIR__.'/fixtures/webhook/message-revoked.json');
+    $payload = file_get_contents(__DIR__.'/fixtures/Whatsapp/Webhook/message-revoked.json');
 
     return json_decode($payload, true);
 }
 
 function pollVoteWebhookPayload(): array
 {
-    $payload = file_get_contents(__DIR__.'/fixtures/webhook/poll-vote.json');
+    $payload = file_get_contents(__DIR__.'/fixtures/Whatsapp/Webhook/poll-vote.json');
 
     return json_decode($payload, true);
 }
 
 function pollVoteFailedWebhookPayload(): array
 {
-    $payload = file_get_contents(__DIR__.'/fixtures/webhook/poll-vote-failed.json');
+    $payload = file_get_contents(__DIR__.'/fixtures/Whatsapp/Webhook/poll-vote-failed.json');
 
     return json_decode($payload, true);
 }
@@ -178,6 +178,92 @@ function editMessageThreadEndpointPayload(): array
 function getHeartbeatsEndpointPayload(): array
 {
     $payload = file_get_contents(__DIR__.'/fixtures/Sms/get-heartbeats.json');
+
+    return json_decode($payload, true);
+}
+
+// SMS Webhook
+
+function heartbeatDisabledWebhookPayload(): array
+{
+    $payload = file_get_contents(__DIR__.'/fixtures/Sms/Webhook/heartbeat-disabled.json');
+
+    return json_decode($payload, true);
+}
+
+function heartbeatMissedWebhookPayload(): array
+{
+    $payload = file_get_contents(__DIR__.'/fixtures/Sms/Webhook/heartbeat-missed.json');
+
+    return json_decode($payload, true);
+}
+
+function heartbeatOfflineWebhookPayload(): array
+{
+    $payload = file_get_contents(__DIR__.'/fixtures/Sms/Webhook/heartbeat-offline.json');
+
+    return json_decode($payload, true);
+}
+
+function heartbeatOnlineWebhookPayload(): array
+{
+    $payload = file_get_contents(__DIR__.'/fixtures/Sms/Webhook/heartbeat-online.json');
+
+    return json_decode($payload, true);
+}
+
+function heartbeatReceivedWebhookPayload(): array
+{
+    $payload = file_get_contents(__DIR__.'/fixtures/Sms/Webhook/heartbeat-received.json');
+
+    return json_decode($payload, true);
+}
+
+function messageCallMissedWebhookPayload(): array
+{
+    $payload = file_get_contents(__DIR__.'/fixtures/Sms/Webhook/message-call-missed.json');
+
+    return json_decode($payload, true);
+}
+
+function messageDeliveredWebhookPayload(): array
+{
+    $payload = file_get_contents(__DIR__.'/fixtures/Sms/Webhook/message-delivered.json');
+
+    return json_decode($payload, true);
+}
+
+function messageExpiredWebhookPayload(): array
+{
+    $payload = file_get_contents(__DIR__.'/fixtures/Sms/Webhook/message-expired.json');
+
+    return json_decode($payload, true);
+}
+
+function messageFailedWebhookPayload(): array
+{
+    $payload = file_get_contents(__DIR__.'/fixtures/Sms/Webhook/message-failed.json');
+
+    return json_decode($payload, true);
+}
+
+function messageReceivedWebhookPayload(): array
+{
+    $payload = file_get_contents(__DIR__.'/fixtures/Sms/Webhook/message-received.json');
+
+    return json_decode($payload, true);
+}
+
+function messageScheduledWebhookPayload(): array
+{
+    $payload = file_get_contents(__DIR__.'/fixtures/Sms/Webhook/message-scheduled.json');
+
+    return json_decode($payload, true);
+}
+
+function messageSentWebhookPayload(): array
+{
+    $payload = file_get_contents(__DIR__.'/fixtures/Sms/Webhook/message-sent.json');
 
     return json_decode($payload, true);
 }
