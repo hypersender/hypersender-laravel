@@ -3,7 +3,7 @@
 namespace Hypersender\Hypersender\Http\Controllers;
 
 use Hypersender\Hypersender\Contracts\WhatsappWebhookJobInterface;
-use Hypersender\Hypersender\Http\Requests\WhatsappWebhookRequest;
+use Hypersender\Hypersender\Http\Requests\Whatsapp\WhatsappWebhookRequest;
 use Illuminate\Routing\Controller;
 
 class WhatsappWebhookController extends Controller
