@@ -2,6 +2,8 @@
 
 namespace Hypersender\Hypersender\Http\Requests\Sms;
 
+use Hypersender\Hypersender\Support\RemovesNullsDeep;
+
 /**
  * See documentation for available parameters:
  *
@@ -9,6 +11,8 @@ namespace Hypersender\Hypersender\Http\Requests\Sms;
  */
 class MessageThreadsIndexRequest
 {
+    use RemovesNullsDeep;
+
     public function __construct(
         public readonly ?string $perPage = null,
         public readonly ?string $sort = null,
@@ -32,21 +36,5 @@ class MessageThreadsIndexRequest
                 'from_or_to_number' => $this->fromOrToNumber,
             ],
         ]);
-    }
-
-    private static function removeNullsDeep(array $data): array
-    {
-        foreach ($data as $key => $value) {
-            if (is_array($value)) {
-                $data[$key] = self::removeNullsDeep($value);
-                if ($data[$key] === []) {
-                    unset($data[$key]);
-                }
-            } elseif ($value === null) {
-                unset($data[$key]);
-            }
-        }
-
-        return $data;
     }
 }
