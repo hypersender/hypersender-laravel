@@ -36,6 +36,6 @@ class TestCase extends Orchestra
         /* SMS */
         config()->set('hypersender-laravel.sms_base_url', 'https://app.hypersender.com/api/sms/v1');
         config()->set('hypersender-laravel.sms_instance_id', 'test-instance');
-        config()->set('hypersender-laravel.sms_webhook_authorization', 'x-sms-webhook');
+        config()->set('hypersender-laravel.sms_webhook_authorization_secret', 'x-sms-webhook');
     }
 }
