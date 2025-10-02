@@ -1,0 +1,1 @@
+{"event":"phone.heartbeat.received","data":{"id":"9e06e75d-416d-454c-a80c-2ea11e04563b","phone_id":"9defcf1e-552c-4bef-a843-872edec576ef","battery_level":"63","is_charging":false,"local_timestamp":"2025-01-22 07:48:05","app_version":"v1.0.3","created_at":"2025-01-22 05:48:06","updated_at":"2025-01-22 05:48:06"}}

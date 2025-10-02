@@ -4,6 +4,7 @@ namespace Hypersender\Hypersender;
 
 use Hypersender\Hypersender\Clients\Sms\HypersenderSmsClient;
 use Hypersender\Hypersender\Clients\Whatsapp\HypersenderWhatsappClient;
+use Hypersender\Hypersender\Contracts\SmsWebhookJobInterface;
 use Hypersender\Hypersender\Contracts\WhatsappWebhookJobInterface;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
@@ -16,6 +17,10 @@ class HypersenderServiceProvider extends PackageServiceProvider
             ->name('hypersender-laravel')
             ->hasConfigFile()
             ->hasRoutes('webhook');
+
+        $this->publishes([
+            __DIR__.'/../config/hypersender-laravel.php' => config_path('hypersender-laravel.php'),
+        ], 'hypersender-laravel-config');
     }
 
     public function packageRegistered(): void
@@ -36,5 +41,7 @@ class HypersenderServiceProvider extends PackageServiceProvider
         });
 
         $this->app->bind(WhatsappWebhookJobInterface::class, config('hypersender-laravel.whatsapp_webhook_job'));
+
+        $this->app->bind(SmsWebhookJobInterface::class, config('hypersender-laravel.sms_webhook_job'));
     }
 }
