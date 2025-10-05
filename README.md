@@ -1,21 +1,17 @@
-# A robust Laravel SDK for interacting with the Hypersender Api.
+<p align="center"><img width="307" height="63" src="/art/hy.svg" alt="Logo Laravel Sanctum"></p>
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/hypersender/hypersender-laravel.svg?style=flat-square)](https://packagist.org/packages/hypersender/hypersender-laravel)
-[![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/hypersender/hypersender-laravel/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/hypersender/hypersender-laravel/actions?query=workflow%3Arun-tests+branch%3Amain)
-[![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/hypersender/hypersender-laravel/fix-php-code-style-issues.yml?branch=main&label=code%20style&style=flat-square)](https://github.com/hypersender/hypersender-laravel/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
-[![Total Downloads](https://img.shields.io/packagist/dt/hypersender/hypersender-laravel.svg?style=flat-square)](https://packagist.org/packages/hypersender/hypersender-laravel)
+<p align="center">
+<a href="https://github.com/laravel/sanctum/actions"><img src="https://github.com/laravel/sanctum/workflows/tests/badge.svg" alt="Build Status"></a>
+<a href="https://packagist.org/packages/laravel/sanctum"><img src="https://img.shields.io/packagist/dt/laravel/sanctum" alt="Total Downloads"></a>
+<a href="https://packagist.org/packages/laravel/sanctum"><img src="https://img.shields.io/packagist/v/laravel/sanctum" alt="Latest Stable Version"></a>
+<a href="https://packagist.org/packages/laravel/sanctum"><img src="https://img.shields.io/packagist/l/laravel/sanctum" alt="License"></a>
+</p>
 
-This is where your description should go. Limit it to a paragraph or two. Consider adding a small example.
+# Introduction
 
-## Support us
+A robust Laravel SDK for interacting with the Hypersender Api.
 
-[<img src="https://github-ads.s3.eu-central-1.amazonaws.com/hypersender-laravel.jpg?t=1" width="419px" />](https://spatie.be/github-ad-click/hypersender-laravel)
-
-We invest a lot of resources into creating [best in class open source packages](https://spatie.be/open-source). You can support us by [buying one of our paid products](https://spatie.be/open-source/support-us).
-
-We highly appreciate you sending us a postcard from your hometown, mentioning which of our package(s) you are using. You'll find our address on [our contact page](https://spatie.be/about-us). We publish all received postcards on [our virtual postcard wall](https://spatie.be/open-source/postcards).
-
-## Installation
+# Installation
 
 You can install the package via composer:
 
@@ -23,44 +19,9 @@ You can install the package via composer:
 composer require hypersender/hypersender-laravel
 ```
 
-You can publish and run the migrations with:
+# Official Documentation
 
-```bash
-php artisan vendor:publish --tag="hypersender-laravel-migrations"
-php artisan migrate
-```
-
-You can publish the config file with:
-
-```bash
-php artisan vendor:publish --tag="hypersender-laravel-config"
-```
-
-This is the contents of the published config file:
-
-```php
-return [
-];
-```
-
-Optionally, you can publish the views using
-
-```bash
-php artisan vendor:publish --tag="hypersender-laravel-views"
-```
-
-## Usage
-
-```php
-$hypersender = new Hypersender\Hypersender();
-echo $hypersender->echoPhrase('Hello, Hypersender!');
-```
-
-## Testing
-
-```bash
-composer test
-```
+You can find the official documentation at [https://hypersender.github.io/hypersender-laravel/](https://hypersender.github.io/hypersender-laravel/).
 
 ## Changelog
 
@@ -76,8 +37,8 @@ Please review [our security policy](../../security/policy) on how to report secu
 
 ## Credits
 
-- [hypersender](https://github.com/hypersender)
-- [All Contributors](../../contributors)
+-   [hypersender](https://github.com/hypersender)
+-   [All Contributors](../../contributors)
 
 ## License
 
