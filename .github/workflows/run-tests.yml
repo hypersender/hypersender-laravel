@@ -15,26 +15,42 @@ concurrency:
 
 jobs:
   test:
+    name: P${{ matrix.php }} - L${{ matrix.laravel }} - ${{ matrix.stability }} - ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
     timeout-minutes: 5
     strategy:
       fail-fast: true
       matrix:
         os: [ubuntu-latest, windows-latest]
+        php: [8.1, 8.2, 8.3, 8.4]
+        laravel: ['10.*', '11.*', '12.*']
+        stability: [prefer-stable]
+        testbench: [''] # Will be filled by include
+        exclude:
+          # Laravel 10 supports only PHP 8.1 - 8.3
+          - laravel: '10.*'
+            php: 8.4
+          # Laravel 11 supports PHP 8.2 - 8.4
+          - laravel: '11.*'
+            php: 8.1
+          # Laravel 12 supports PHP 8.2 - 8.4
+          - laravel: '12.*'
+            php: 8.1
         include:
-          # Stable builds only
-          - { php: 8.1, laravel: '10.*', testbench: '8.*', stability: 'prefer-stable' }
-          - { php: 8.2, laravel: '10.*', testbench: '8.*', stability: 'prefer-stable' }
-          - { php: 8.3, laravel: '10.*', testbench: '8.*', stability: 'prefer-stable' }
-          - { php: 8.2, laravel: '11.*', testbench: '9.*', stability: 'prefer-stable' }
-          - { php: 8.3, laravel: '11.*', testbench: '9.*', stability: 'prefer-stable' }
-          - { php: 8.4, laravel: '11.*', testbench: '9.*', stability: 'prefer-stable' }
-          - { php: 8.2, laravel: '12.*', testbench: '10.*', stability: 'prefer-stable' }
-          - { php: 8.3, laravel: '12.*', testbench: '10.*', stability: 'prefer-stable' }
-          - { php: 8.4, laravel: '12.*', testbench: '10.*', stability: 'prefer-stable' }
-          # Single lowest dependency build for broadest surface (latest PHP & Laravel)
-          - { php: 8.4, laravel: '12.*', testbench: '10.*', stability: 'prefer-lowest' }
-    name: P${{ matrix.php }} - L${{ matrix.laravel }} - ${{ matrix.stability }} - ${{ matrix.os }}
+          # Add testbench versions
+          - laravel: '10.*'
+            testbench: '8.*'
+          - laravel: '11.*'
+            testbench: '9.*'
+          - laravel: '12.*'
+            testbench: '10.*'
+          # Add single prefer-lowest job
+          - os: ubuntu-latest
+            php: 8.4
+            laravel: '12.*'
+            stability: 'prefer-lowest'
+            testbench: '10.*'
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v5
