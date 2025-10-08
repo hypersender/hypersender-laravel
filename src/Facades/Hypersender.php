@@ -6,8 +6,8 @@ use Hypersender\Hypersender\HypersenderManager;
 use Illuminate\Support\Facades\Facade;
 
 /**
- * @method static \Hypersender\Hypersender\Clients\Whatsapp\HypersenderWhatsappClient whatsapp()
- * @method static \Hypersender\Hypersender\Clients\Sms\HypersenderSmsClient sms()
+ * @method static \Hypersender\Hypersender\Services\HypersenderWhatsappService whatsapp()
+ * @method static \Hypersender\Hypersender\Services\HypersenderSmsService sms()
  *
  * @see \Hypersender\Hypersender\HypersenderManager
  */
