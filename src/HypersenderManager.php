@@ -2,23 +2,23 @@
 
 namespace Hypersender\Hypersender;
 
-use Hypersender\Hypersender\Clients\Sms\HypersenderSmsClient;
-use Hypersender\Hypersender\Clients\Whatsapp\HypersenderWhatsappClient;
+use Hypersender\Hypersender\Services\HypersenderSmsService;
+use Hypersender\Hypersender\Services\HypersenderWhatsappService;
 
 class HypersenderManager
 {
     public function __construct(
-        protected HypersenderWhatsappClient $whatsappClient,
-        protected HypersenderSmsClient $smsClient,
+        protected HypersenderWhatsappService $whatsappService,
+        protected HypersenderSmsService $smsService,
     ) {}
 
-    public function whatsapp(): HypersenderWhatsappClient
+    public function whatsapp(): HypersenderWhatsappService
     {
-        return $this->whatsappClient;
+        return $this->whatsappService;
     }
 
-    public function sms(): HypersenderSmsClient
+    public function sms(): HypersenderSmsService
     {
-        return $this->smsClient;
+        return $this->smsService;
     }
 }
