@@ -37,7 +37,9 @@ Please review [our security policy](../../security/policy) on how to report secu
 
 ## Credits
 
--   [hypersender](https://github.com/hypersender)
+-   [Hypersender](https://github.com/hypersender)
+-   [Osama Nagi](https://github.com/osamanagi)
+-   [Ahmed Nagi](https://github.com/nagi1)
 -   [All Contributors](../../contributors)
 
 ## License
