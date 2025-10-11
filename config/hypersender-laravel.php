@@ -1,5 +1,6 @@
 <?php
 
+use Hypersender\Hypersender\Jobs\ProcessSmsWebhookJob;
 use Hypersender\Hypersender\Jobs\ProcessWhatsappWebhookJob;
 
 return [
@@ -18,6 +19,6 @@ return [
     'sms_instance_id' => env('HYPERSENDER_SMS_INSTANCE_ID'),
     'sms_webhook_authorization_secret' => env('HYPERSENDER_SMS_WEBHOOK_AUTHORIZATION_SECRET', 'x-sms-webhook'),
     'sms_webhook_route' => env('HYPERSENDER_SMS_WEBHOOK_ROUTE', 'sms/webhook'),
-    'sms_webhook_job' => env('HYPERSENDER_SMS_WEBHOOK_JOB', 'hypersender:sms-webhook'),
+    'sms_webhook_job' => env('HYPERSENDER_SMS_WEBHOOK_JOB', ProcessSmsWebhookJob::class),
     'sms_queue' => env('HYPERSENDER_SMS_QUEUE', 'default'),
 ];
