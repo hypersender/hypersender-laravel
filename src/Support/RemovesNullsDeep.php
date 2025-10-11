@@ -9,17 +9,14 @@ trait RemovesNullsDeep
      */
     private static function removeNullsDeep(array $data): array
     {
-        foreach ($data as $key => $value) {
-            if (is_array($value)) {
-                $data[$key] = self::removeNullsDeep($value);
-                if ($data[$key] === []) {
-                    unset($data[$key]);
-                }
-            } elseif ($value === null) {
-                unset($data[$key]);
-            }
-        }
+        $mapped = array_map(
+            fn ($value) => is_array($value) ? self::removeNullsDeep($value) : $value,
+            $data
+        );
 
-        return $data;
+        return array_filter(
+            $mapped,
+            fn ($value) => is_array($value) ? $value !== [] : $value !== null
+        );
     }
 }
