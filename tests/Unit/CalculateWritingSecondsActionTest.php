@@ -6,10 +6,10 @@ use Illuminate\Validation\ValidationException;
 it('caps calculated seconds at max_seconds', function () {
     $longText = str_repeat('This is a fairly long message to simulate typing. ', 30);
 
-    $seconds = CalculateWritingSecondsAction::make([
-        'text' => $longText,
-        'max_seconds' => 8,
-    ])->run();
+    $seconds = (new CalculateWritingSecondsAction(
+        text: $longText,
+        maxSeconds: 8,
+    ))->execute();
 
     expect($seconds)
         ->toBeInt()
@@ -18,9 +18,9 @@ it('caps calculated seconds at max_seconds', function () {
 });
 
 it('returns a reasonable range for short text without max', function () {
-    $seconds = CalculateWritingSecondsAction::make([
-        'text' => 'Hi there',
-    ])->run();
+    $seconds = (new CalculateWritingSecondsAction(
+        text: 'Hi there',
+    ))->execute();
 
     // Given algorithm randomness and thinking time, keep bounds loose but meaningful
     expect($seconds)
@@ -30,5 +30,6 @@ it('returns a reasonable range for short text without max', function () {
 });
 
 it('validates that text is required', function () {
-    CalculateWritingSecondsAction::make([])->run();
+    (new CalculateWritingSecondsAction(text: ''))
+        ->execute();
 })->throws(ValidationException::class);

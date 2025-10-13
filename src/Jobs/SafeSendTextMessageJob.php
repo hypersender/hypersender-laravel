@@ -31,16 +31,15 @@ class SafeSendTextMessageJob implements SafeSendTextMessageJobInterface, ShouldQ
         $response = Hypersender::whatsapp()->startTyping($this->payload['chat_id']);
 
         if (! $response->successful()) {
-            $body = $response->body();
-            $this->fail(new HypersenderApiErrorException(responseBody: $body));
+            $this->fail(new HypersenderApiErrorException(responseBody: $response->body()));
 
             return;
         }
 
-        $sleepForSeconds = CalculateWritingSecondsAction::make([
-            'text' => $this->payload['text'],
-            'max_seconds' => 8,
-        ])->run();
+        $sleepForSeconds = (new CalculateWritingSecondsAction(
+            text: $this->payload['text'],
+            maxSeconds: 8,
+        ))->execute();
 
         Sleep::for($sleepForSeconds)->seconds();
 
@@ -53,8 +52,7 @@ class SafeSendTextMessageJob implements SafeSendTextMessageJobInterface, ShouldQ
         );
 
         if (! $sendTextResponse->successful()) {
-            $body = $sendTextResponse->body();
-            $this->fail(new HypersenderApiErrorException(responseBody: $body));
+            $this->fail(new HypersenderApiErrorException(responseBody: $sendTextResponse->body()));
 
             return;
         }
@@ -62,8 +60,7 @@ class SafeSendTextMessageJob implements SafeSendTextMessageJobInterface, ShouldQ
         $stopTypingResponse = Hypersender::whatsapp()->stopTyping($this->payload['chat_id']);
 
         if (! $stopTypingResponse->successful()) {
-            $body = $stopTypingResponse->body();
-            $this->fail(new HypersenderApiErrorException(responseBody: $body));
+            $this->fail(new HypersenderApiErrorException(responseBody: $stopTypingResponse->body()));
 
             return;
         }
