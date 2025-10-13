@@ -89,6 +89,13 @@ function deleteMessageEndpointPayload(): array
     return json_decode($payload, true);
 }
 
+function sendTextFailurePayload(): array
+{
+    $payload = file_get_contents(__DIR__.'/fixtures/Whatsapp/send-text-failure.json');
+
+    return json_decode($payload, true);
+}
+
 // WhatsApp Webhook
 function presenceUpdateWebhookPayload(): array
 {

@@ -2,24 +2,28 @@
 
 namespace Hypersender\Hypersender\Actions;
 
-use Hypersender\Hypersender\Support\BaseAction;
-
 /**
  * @property string $text
  * @property int|null $max_seconds
  */
-class CalculateWritingSecondsAction extends BaseAction
+class CalculateWritingSecondsAction
 {
-    protected function rules(): array
+    public function __construct(
+        public string $text,
+        public ?int $maxSeconds = null,
+    ) {}
+
+    public function execute(): int
     {
-        return [
+        // Validate input (keep behavior compatible with previous BaseAction validation)
+        validator([
+            'text' => $this->text,
+            'max_seconds' => $this->maxSeconds,
+        ], [
             'text' => ['required', 'string'],
             'max_seconds' => ['nullable', 'integer'],
-        ];
-    }
+        ])->validate();
 
-    public function handle(): int
-    {
         // Average typing speed on mobile is around 30-40 words per minute
         // Which is roughly 3-4 characters per second
         $charactersPerSecond = 3.5;
@@ -35,9 +39,9 @@ class CalculateWritingSecondsAction extends BaseAction
         $thinkingTime = min(5, ceil(strlen($this->text) / 100));
         $seconds += $thinkingTime;
 
-        if ($this->max_seconds) {
+        if ($this->maxSeconds) {
             // Ensure we don't exceed maximum allowed seconds
-            $seconds = min($seconds, $this->max_seconds);
+            $seconds = min($seconds, $this->maxSeconds);
         }
 
         return $seconds;

@@ -1,0 +1,1 @@
+{"message":"The given data was invalid.","errors":{"messages":["The number you want to send the message to is not on whatsapp."],"jid":"20121323124131@s.whatsapp.net","exists":false},"statusCode":422}

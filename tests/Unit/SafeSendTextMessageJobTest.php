@@ -68,7 +68,7 @@ it('fails early if startTyping is unsuccessful', function () {
 
     $bad = Mockery::mock(HttpResponse::class);
     $bad->shouldReceive('successful')->andReturnFalse();
-    $bad->shouldReceive('body')->andReturn(json_encode(['error' => 'bad']));
+    $bad->shouldReceive('body')->andReturn(json_encode(sendTextFailurePayload()));
     $service->shouldReceive('startTyping')->once()->with($payload['chat_id'])
         ->andReturn($bad);
 
@@ -103,7 +103,7 @@ it('does not stop typing when sendText fails', function () {
 
     $bad = Mockery::mock(HttpResponse::class);
     $bad->shouldReceive('successful')->andReturnFalse();
-    $bad->shouldReceive('body')->andReturn(json_encode(['error' => 'bad']));
+    $bad->shouldReceive('body')->andReturn(json_encode(sendTextFailurePayload()));
 
     $service->shouldReceive('sendText')->once()->withArgs(function ($chatId, $text) use ($payload) {
         return $chatId === $payload['chat_id'] && $text === $payload['text'];
