@@ -5,12 +5,13 @@ namespace Hypersender\Hypersender\Jobs;
 use Hypersender\Hypersender\Contracts\WhatsappWebhookJobInterface;
 use Hypersender\Hypersender\Enums\WhatsappWebhookEventEnum;
 use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use InvalidArgumentException;
 
-class ProcessWhatsappWebhookJob implements WhatsappWebhookJobInterface
+class ProcessWhatsappWebhookJob implements ShouldQueue, WhatsappWebhookJobInterface
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
