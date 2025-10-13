@@ -44,7 +44,7 @@ it('sends text and respects typing delay', function () {
     $service->shouldReceive('stopTyping')->once()->with($payload['chat_id'])
         ->andReturn($ok);
 
-    (new SafeSendTextMessageJob($payload))->handle();
+    app(SafeSendTextMessageJob::class, ['payload' => $payload])->handle();
 
     // Assert exactly one sleep occurred and the interval is greater than 0 and less than or equal to 8 seconds due to max_seconds cap
     Sleep::assertSlept(fn ($interval) => (int) $interval->totalSeconds > 0 && (int) $interval->totalSeconds <= 8, 1);
@@ -77,7 +77,7 @@ it('fails early if startTyping is unsuccessful', function () {
     $service->shouldReceive('stopTyping')->never();
 
     // Execute and ensure no exception escapes
-    (new SafeSendTextMessageJob($payload))->handle();
+    app(SafeSendTextMessageJob::class, ['payload' => $payload])->handle();
 
     Sleep::assertNeverSlept();
 });
@@ -112,7 +112,7 @@ it('does not stop typing when sendText fails', function () {
     // Should not be called on failure
     $service->shouldReceive('stopTyping')->never();
 
-    (new SafeSendTextMessageJob($payload))->handle();
+    app(SafeSendTextMessageJob::class, ['payload' => $payload])->handle();
 
     // Sleep should have occurred before sendText
     Sleep::assertSlept(fn ($interval) => (int) $interval->totalSeconds > 0 && (int) $interval->totalSeconds <= 8, 1);
