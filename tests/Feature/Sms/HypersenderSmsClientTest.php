@@ -18,11 +18,11 @@ it('can index messages', function () {
         '*' => Http::response($payload, 200),
     ]);
 
-    $messagesRequest = new MessagesIndexRequest(
-        perPage: '50',
-        status: 'delivered',
-        page: '2',
-    );
+    $messagesRequest = app(MessagesIndexRequest::class, [
+        'perPage' => '50',
+        'status' => 'delivered',
+        'page' => '2',
+    ]);
 
     $expectedQuery = $messagesRequest->toQuery();
 
@@ -157,13 +157,13 @@ it('can index message threads', function () {
         '*' => Http::response($payload, 200),
     ]);
 
-    $messagesRequest = new MessageThreadsIndexRequest(
-        perPage: '50',
-        lastMessageContent: 'Hello, world!',
-        isArchived: true,
-        lastMessageId: 'msg_1234567890abcdef',
-        fromOrToNumber: '+201234567890',
-    );
+    $messagesRequest = app(MessageThreadsIndexRequest::class, [
+        'perPage' => '50',
+        'lastMessageContent' => 'Hello, world!',
+        'isArchived' => true,
+        'lastMessageId' => 'msg_1234567890abcdef',
+        'fromOrToNumber' => '+201234567890',
+    ]);
 
     $response = Hypersender::sms()->messageThreads($messagesRequest);
 
