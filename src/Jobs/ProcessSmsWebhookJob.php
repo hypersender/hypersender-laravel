@@ -5,12 +5,13 @@ namespace Hypersender\Hypersender\Jobs;
 use Hypersender\Hypersender\Contracts\SmsWebhookJobInterface;
 use Hypersender\Hypersender\Enums\SmsWebhookEventEnum;
 use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use InvalidArgumentException;
 
-class ProcessSmsWebhookJob implements SmsWebhookJobInterface
+class ProcessSmsWebhookJob implements ShouldQueue, SmsWebhookJobInterface
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
