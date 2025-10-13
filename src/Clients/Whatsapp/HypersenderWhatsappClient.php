@@ -24,28 +24,6 @@ class HypersenderWhatsappClient extends AbstractClient
      * @param bool|null linkPreview - Whether to show link preview (default: false)
      * @param bool|null linkPreviewHighQuality - Whether to use high quality images for link preview (default: false)
      **/
-    public function sendTextSafe(
-        string $chatId,
-        string $text,
-        ?string $replyTo = null,
-        ?bool $linkPreview = null,
-        ?bool $linkPreviewHighQuality = null,
-    ): Response {
-        return $this->post('/send-text-safe', [
-            'chatId' => $chatId,
-            'text' => $text,
-            'reply_to' => $replyTo,
-            'link_preview' => $linkPreview,
-            'link_preview_high_quality' => $linkPreviewHighQuality,
-        ]);
-    }
-
-    /**
-     * Send a text message with link preview disabled and all links removed
-     *
-     * @param bool|null linkPreview - Whether to show link preview (default: false)
-     * @param bool|null linkPreviewHighQuality - Whether to use high quality images for link preview (default: false)
-     **/
     public function sendText(
         string $chatId,
         string $text,
