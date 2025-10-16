@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Queue;
 
 beforeEach(function () {
-    $this->endpoint = config('hypersender-laravel.whatsapp_base_url');
+    $this->endpoint = 'https://app.hypersender.com/api/whatsapp/v1';
     $this->instanceId = config('hypersender-laravel.whatsapp_instance_id');
 });
 
