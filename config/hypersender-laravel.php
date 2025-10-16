@@ -5,7 +5,6 @@ use Hypersender\Hypersender\Jobs\ProcessWhatsappWebhookJob;
 
 return [
     /* WhatsApp */
-    'whatsapp_base_url' => env('HYPERSENDER_WHATSAPP_BASE_URL', 'https://app.hypersender.com/api/whatsapp/v1'),
     'whatsapp_api_key' => env('HYPERSENDER_WHATSAPP_API_KEY'),
     'whatsapp_instance_id' => env('HYPERSENDER_WHATSAPP_INSTANCE_ID'),
     'whatsapp_webhook_authorization_secret' => env('HYPERSENDER_WHATSAPP_WEBHOOK_AUTHORIZATION_SECRET'),
@@ -14,7 +13,6 @@ return [
     'whatsapp_queue' => env('HYPERSENDER_WHATSAPP_QUEUE', 'default'),
 
     /* SMS */
-    'sms_base_url' => env('HYPERSENDER_SMS_BASE_URL', 'https://app.hypersender.com/api/sms/v1'),
     'sms_api_key' => env('HYPERSENDER_SMS_API_KEY'),
     'sms_instance_id' => env('HYPERSENDER_SMS_INSTANCE_ID'),
     'sms_webhook_authorization_secret' => env('HYPERSENDER_SMS_WEBHOOK_AUTHORIZATION_SECRET', 'x-sms-webhook'),
