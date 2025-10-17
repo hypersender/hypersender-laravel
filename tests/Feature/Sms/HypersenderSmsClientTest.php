@@ -7,7 +7,7 @@ use Illuminate\Http\Client\Request;
 use Illuminate\Support\Facades\Http;
 
 beforeEach(function () {
-    $this->endpoint = config('hypersender-laravel.sms_base_url');
+    $this->endpoint = 'https://app.hypersender.com/api/sms/v1';
     $this->instanceId = config('hypersender-laravel.sms_instance_id');
 });
 

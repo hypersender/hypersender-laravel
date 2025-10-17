@@ -29,12 +29,10 @@ class TestCase extends Orchestra
         config()->set('database.default', 'testing');
 
         /* WhatsApp */
-        config()->set('hypersender-laravel.whatsapp_base_url', 'https://app.hypersender.com/api/whatsapp/v1');
         config()->set('hypersender-laravel.whatsapp_instance_id', 'test-instance');
         config()->set('hypersender-laravel.whatsapp_webhook_authorization_secret', 'x-whatsapp-webhook');
 
         /* SMS */
-        config()->set('hypersender-laravel.sms_base_url', 'https://app.hypersender.com/api/sms/v1');
         config()->set('hypersender-laravel.sms_instance_id', 'test-instance');
         config()->set('hypersender-laravel.sms_webhook_authorization_secret', 'x-sms-webhook');
     }
