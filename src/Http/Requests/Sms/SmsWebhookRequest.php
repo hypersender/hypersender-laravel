@@ -1,8 +1,8 @@
 <?php
 
-namespace Hypersender\Hypersender\Http\Requests\Sms;
+namespace Hypersender\Http\Requests\Sms;
 
-use Hypersender\Hypersender\Enums\SmsWebhookEventEnum;
+use Hypersender\Enums\SmsWebhookEventEnum;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rules\Enum;
 use Illuminate\Validation\Validator;

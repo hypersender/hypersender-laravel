@@ -1,6 +1,6 @@
 <?php
 
-namespace Hypersender\Hypersender\Support;
+namespace Hypersender\Support;
 
 trait RemovesNullsDeep
 {

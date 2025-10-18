@@ -1,11 +1,11 @@
 <?php
 
-namespace Hypersender\Hypersender;
+namespace Hypersender;
 
-use Hypersender\Hypersender\Contracts\SmsWebhookJobInterface;
-use Hypersender\Hypersender\Contracts\WhatsappWebhookJobInterface;
-use Hypersender\Hypersender\Services\HypersenderSmsService;
-use Hypersender\Hypersender\Services\HypersenderWhatsappService;
+use Hypersender\Contracts\SmsWebhookJobInterface;
+use Hypersender\Contracts\WhatsappWebhookJobInterface;
+use Hypersender\Services\HypersenderSmsService;
+use Hypersender\Services\HypersenderWhatsappService;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 

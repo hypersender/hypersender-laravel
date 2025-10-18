@@ -1,8 +1,8 @@
 <?php
 
-namespace Hypersender\Hypersender\Clients\Whatsapp;
+namespace Hypersender\Clients\Whatsapp;
 
-use Hypersender\Hypersender\AbstractClient;
+use Hypersender\AbstractClient;
 use Illuminate\Http\Client\Response;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Config;

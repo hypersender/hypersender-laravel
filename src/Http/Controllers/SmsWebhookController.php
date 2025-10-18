@@ -1,9 +1,9 @@
 <?php
 
-namespace Hypersender\Hypersender\Http\Controllers;
+namespace Hypersender\Http\Controllers;
 
-use Hypersender\Hypersender\Contracts\SmsWebhookJobInterface;
-use Hypersender\Hypersender\Http\Requests\Sms\SmsWebhookRequest;
+use Hypersender\Contracts\SmsWebhookJobInterface;
+use Hypersender\Http\Requests\Sms\SmsWebhookRequest;
 use Illuminate\Routing\Controller;
 
 class SmsWebhookController extends Controller

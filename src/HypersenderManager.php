@@ -1,9 +1,9 @@
 <?php
 
-namespace Hypersender\Hypersender;
+namespace Hypersender;
 
-use Hypersender\Hypersender\Services\HypersenderSmsService;
-use Hypersender\Hypersender\Services\HypersenderWhatsappService;
+use Hypersender\Services\HypersenderSmsService;
+use Hypersender\Services\HypersenderWhatsappService;
 
 class HypersenderManager
 {

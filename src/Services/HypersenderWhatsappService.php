@@ -1,9 +1,9 @@
 <?php
 
-namespace Hypersender\Hypersender\Services;
+namespace Hypersender\Services;
 
-use Hypersender\Hypersender\Clients\Whatsapp\HypersenderWhatsappClient;
-use Hypersender\Hypersender\Jobs\SafeSendTextMessageJob;
+use Hypersender\Clients\Whatsapp\HypersenderWhatsappClient;
+use Hypersender\Jobs\SafeSendTextMessageJob;
 use Illuminate\Support\Traits\ForwardsCalls;
 
 /**

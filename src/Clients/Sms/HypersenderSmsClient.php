@@ -1,11 +1,11 @@
 <?php
 
-namespace Hypersender\Hypersender\Clients\Sms;
+namespace Hypersender\Clients\Sms;
 
-use Hypersender\Hypersender\AbstractClient;
-use Hypersender\Hypersender\Http\Requests\Sms\HeartbeatsIndexRequest;
-use Hypersender\Hypersender\Http\Requests\Sms\MessagesIndexRequest;
-use Hypersender\Hypersender\Http\Requests\Sms\MessageThreadsIndexRequest;
+use Hypersender\AbstractClient;
+use Hypersender\Http\Requests\Sms\HeartbeatsIndexRequest;
+use Hypersender\Http\Requests\Sms\MessagesIndexRequest;
+use Hypersender\Http\Requests\Sms\MessageThreadsIndexRequest;
 use Illuminate\Http\Client\Response;
 use Illuminate\Support\Facades\Config;
 

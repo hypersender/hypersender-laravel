@@ -1,6 +1,6 @@
 <?php
 
-use Hypersender\Hypersender\Actions\CalculateWritingSecondsAction;
+use Hypersender\Actions\CalculateWritingSecondsAction;
 use Illuminate\Validation\ValidationException;
 
 it('caps calculated seconds at max_seconds', function () {

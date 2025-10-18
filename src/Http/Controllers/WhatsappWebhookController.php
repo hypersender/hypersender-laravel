@@ -1,9 +1,9 @@
 <?php
 
-namespace Hypersender\Hypersender\Http\Controllers;
+namespace Hypersender\Http\Controllers;
 
-use Hypersender\Hypersender\Contracts\WhatsappWebhookJobInterface;
-use Hypersender\Hypersender\Http\Requests\Whatsapp\WhatsappWebhookRequest;
+use Hypersender\Contracts\WhatsappWebhookJobInterface;
+use Hypersender\Http\Requests\Whatsapp\WhatsappWebhookRequest;
 use Illuminate\Routing\Controller;
 
 class WhatsappWebhookController extends Controller

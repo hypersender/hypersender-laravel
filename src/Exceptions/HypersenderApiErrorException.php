@@ -1,6 +1,6 @@
 <?php
 
-namespace Hypersender\Hypersender\Exceptions;
+namespace Hypersender\Exceptions;
 
 use Exception;
 use Illuminate\Http\Request;

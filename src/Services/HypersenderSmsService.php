@@ -1,8 +1,8 @@
 <?php
 
-namespace Hypersender\Hypersender\Services;
+namespace Hypersender\Services;
 
-use Hypersender\Hypersender\Clients\Sms\HypersenderSmsClient;
+use Hypersender\Clients\Sms\HypersenderSmsClient;
 use Illuminate\Support\Traits\ForwardsCalls;
 
 /**

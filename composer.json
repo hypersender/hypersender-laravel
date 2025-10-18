@@ -31,13 +31,13 @@
     },
     "autoload": {
         "psr-4": {
-            "Hypersender\\Hypersender\\": "src/",
-            "Hypersender\\Hypersender\\Database\\Factories\\": "database/factories/"
+            "Hypersender\\": "src/",
+            "Hypersender\\Database\\Factories\\": "database/factories/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Hypersender\\Hypersender\\Tests\\": "tests/",
+            "Hypersender\\Tests\\": "tests/",
             "Workbench\\App\\": "workbench/app/"
         }
     },
@@ -57,10 +57,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Hypersender\\Hypersender\\HypersenderServiceProvider"
+                "Hypersender\\HypersenderServiceProvider"
             ],
             "aliases": {
-                "Hypersender": "Hypersender\\Hypersender\\Facades\\Hypersender"
+                "Hypersender": "Hypersender\\Facades\\Hypersender"
             }
         }
     },

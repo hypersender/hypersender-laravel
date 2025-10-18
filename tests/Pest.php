@@ -1,6 +1,6 @@
 <?php
 
-use Hypersender\Hypersender\Tests\TestCase;
+use Hypersender\Tests\TestCase;
 
 uses(TestCase::class)->in(__DIR__);
 
