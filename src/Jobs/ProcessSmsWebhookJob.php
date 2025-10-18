@@ -1,9 +1,9 @@
 <?php
 
-namespace Hypersender\Hypersender\Jobs;
+namespace Hypersender\Jobs;
 
-use Hypersender\Hypersender\Contracts\SmsWebhookJobInterface;
-use Hypersender\Hypersender\Enums\SmsWebhookEventEnum;
+use Hypersender\Contracts\SmsWebhookJobInterface;
+use Hypersender\Enums\SmsWebhookEventEnum;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;

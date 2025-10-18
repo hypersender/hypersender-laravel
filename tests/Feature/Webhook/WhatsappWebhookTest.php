@@ -1,14 +1,14 @@
 <?php
 
-use Hypersender\Hypersender\Events\Whatsapp\MessageAck;
-use Hypersender\Hypersender\Events\Whatsapp\MessageAny;
-use Hypersender\Hypersender\Events\Whatsapp\MessageReaction;
-use Hypersender\Hypersender\Events\Whatsapp\MessageRevoked;
-use Hypersender\Hypersender\Events\Whatsapp\MessageWaiting;
-use Hypersender\Hypersender\Events\Whatsapp\PollVote;
-use Hypersender\Hypersender\Events\Whatsapp\PollVoteFailed;
-use Hypersender\Hypersender\Events\Whatsapp\PresenceUpdate;
-use Hypersender\Hypersender\Jobs\ProcessWhatsappWebhookJob;
+use Hypersender\Events\Whatsapp\MessageAck;
+use Hypersender\Events\Whatsapp\MessageAny;
+use Hypersender\Events\Whatsapp\MessageReaction;
+use Hypersender\Events\Whatsapp\MessageRevoked;
+use Hypersender\Events\Whatsapp\MessageWaiting;
+use Hypersender\Events\Whatsapp\PollVote;
+use Hypersender\Events\Whatsapp\PollVoteFailed;
+use Hypersender\Events\Whatsapp\PresenceUpdate;
+use Hypersender\Jobs\ProcessWhatsappWebhookJob;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Event;
 

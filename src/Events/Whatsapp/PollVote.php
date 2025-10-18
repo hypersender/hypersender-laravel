@@ -1,6 +1,6 @@
 <?php
 
-namespace Hypersender\Hypersender\Events\Whatsapp;
+namespace Hypersender\Events\Whatsapp;
 
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;

@@ -1,6 +1,6 @@
 <?php
 
-namespace Hypersender\Hypersender;
+namespace Hypersender;
 
 use Illuminate\Http\Client\PendingRequest;
 use Illuminate\Http\Client\Response;

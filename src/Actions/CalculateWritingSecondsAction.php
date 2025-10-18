@@ -1,6 +1,6 @@
 <?php
 
-namespace Hypersender\Hypersender\Actions;
+namespace Hypersender\Actions;
 
 /**
  * @property string $text

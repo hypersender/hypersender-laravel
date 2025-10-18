@@ -1,9 +1,9 @@
 <?php
 
-namespace Hypersender\Hypersender\Jobs;
+namespace Hypersender\Jobs;
 
-use Hypersender\Hypersender\Contracts\WhatsappWebhookJobInterface;
-use Hypersender\Hypersender\Enums\WhatsappWebhookEventEnum;
+use Hypersender\Contracts\WhatsappWebhookJobInterface;
+use Hypersender\Enums\WhatsappWebhookEventEnum;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;

@@ -1,15 +1,15 @@
 <?php
 
-namespace Hypersender\Hypersender\Facades;
+namespace Hypersender\Facades;
 
-use Hypersender\Hypersender\HypersenderManager;
+use Hypersender\HypersenderManager;
 use Illuminate\Support\Facades\Facade;
 
 /**
- * @method static \Hypersender\Hypersender\Services\HypersenderWhatsappService whatsapp()
- * @method static \Hypersender\Hypersender\Services\HypersenderSmsService sms()
+ * @method static \Hypersender\Services\HypersenderWhatsappService whatsapp()
+ * @method static \Hypersender\Services\HypersenderSmsService sms()
  *
- * @see \Hypersender\Hypersender\HypersenderManager
+ * @see \Hypersender\HypersenderManager
  */
 class Hypersender extends Facade
 {

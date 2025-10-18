@@ -1,11 +1,11 @@
 <?php
 
-namespace Hypersender\Hypersender\Jobs;
+namespace Hypersender\Jobs;
 
-use Hypersender\Hypersender\Actions\CalculateWritingSecondsAction;
-use Hypersender\Hypersender\Contracts\SafeSendTextMessageJobInterface;
-use Hypersender\Hypersender\Exceptions\HypersenderApiErrorException;
-use Hypersender\Hypersender\Facades\Hypersender;
+use Hypersender\Actions\CalculateWritingSecondsAction;
+use Hypersender\Contracts\SafeSendTextMessageJobInterface;
+use Hypersender\Exceptions\HypersenderApiErrorException;
+use Hypersender\Facades\Hypersender;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;

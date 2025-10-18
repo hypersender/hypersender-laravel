@@ -1,8 +1,8 @@
 <?php
 
-namespace Hypersender\Hypersender\Http\Requests\Whatsapp;
+namespace Hypersender\Http\Requests\Whatsapp;
 
-use Hypersender\Hypersender\Enums\WhatsappWebhookEventEnum;
+use Hypersender\Enums\WhatsappWebhookEventEnum;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rules\Enum;
 use Illuminate\Validation\Validator;
