@@ -1,8 +1,8 @@
 <?php
 
-use Hypersender\Facades\Hypersender;
 use Hypersender\Http\Requests\Sms\MessagesIndexRequest;
 use Hypersender\Http\Requests\Sms\MessageThreadsIndexRequest;
+use Hypersender\Hypersender;
 use Illuminate\Http\Client\Request;
 use Illuminate\Support\Facades\Http;
 

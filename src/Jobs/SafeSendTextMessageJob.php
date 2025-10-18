@@ -5,7 +5,7 @@ namespace Hypersender\Jobs;
 use Hypersender\Actions\CalculateWritingSecondsAction;
 use Hypersender\Contracts\SafeSendTextMessageJobInterface;
 use Hypersender\Exceptions\HypersenderApiErrorException;
-use Hypersender\Facades\Hypersender;
+use Hypersender\Hypersender;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
