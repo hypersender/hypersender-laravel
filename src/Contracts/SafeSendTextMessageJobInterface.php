@@ -1,6 +1,6 @@
 <?php
 
-namespace Hypersender\Hypersender\Contracts;
+namespace Hypersender\Contracts;
 
 interface SafeSendTextMessageJobInterface
 {

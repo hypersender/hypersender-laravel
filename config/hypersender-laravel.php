@@ -1,7 +1,7 @@
 <?php
 
-use Hypersender\Hypersender\Jobs\ProcessSmsWebhookJob;
-use Hypersender\Hypersender\Jobs\ProcessWhatsappWebhookJob;
+use Hypersender\Jobs\ProcessSmsWebhookJob;
+use Hypersender\Jobs\ProcessWhatsappWebhookJob;
 
 return [
     /* WhatsApp */

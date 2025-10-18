@@ -1,8 +1,8 @@
 <?php
 
-namespace Hypersender\Hypersender\Tests;
+namespace Hypersender\Tests;
 
-use Hypersender\Hypersender\HypersenderServiceProvider;
+use Hypersender\HypersenderServiceProvider;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Orchestra\Testbench\TestCase as Orchestra;
 

@@ -1,8 +1,8 @@
 <?php
 
-use Hypersender\Hypersender\Facades\Hypersender;
-use Hypersender\Hypersender\Jobs\SafeSendTextMessageJob;
-use Hypersender\Hypersender\Services\HypersenderWhatsappService;
+use Hypersender\Facades\Hypersender;
+use Hypersender\Jobs\SafeSendTextMessageJob;
+use Hypersender\Services\HypersenderWhatsappService;
 use Illuminate\Http\Client\Response as HttpResponse;
 use Illuminate\Support\Sleep;
 

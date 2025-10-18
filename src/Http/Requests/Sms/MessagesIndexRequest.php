@@ -1,8 +1,8 @@
 <?php
 
-namespace Hypersender\Hypersender\Http\Requests\Sms;
+namespace Hypersender\Http\Requests\Sms;
 
-use Hypersender\Hypersender\Support\RemovesNullsDeep;
+use Hypersender\Support\RemovesNullsDeep;
 
 /**
  * See documentation for available parameters:

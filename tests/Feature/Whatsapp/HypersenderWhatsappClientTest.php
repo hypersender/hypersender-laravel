@@ -1,7 +1,7 @@
 <?php
 
-use Hypersender\Hypersender\Facades\Hypersender;
-use Hypersender\Hypersender\Jobs\SafeSendTextMessageJob;
+use Hypersender\Facades\Hypersender;
+use Hypersender\Jobs\SafeSendTextMessageJob;
 use Illuminate\Http\Client\Request;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Http;
