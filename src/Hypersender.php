@@ -1,8 +1,7 @@
 <?php
 
-namespace Hypersender\Facades;
+namespace Hypersender;
 
-use Hypersender\HypersenderManager;
 use Illuminate\Support\Facades\Facade;
 
 /**

@@ -1,6 +1,6 @@
 <?php
 
-use Hypersender\Facades\Hypersender;
+use Hypersender\Hypersender;
 use Hypersender\Jobs\SafeSendTextMessageJob;
 use Hypersender\Services\HypersenderWhatsappService;
 use Illuminate\Http\Client\Response as HttpResponse;
