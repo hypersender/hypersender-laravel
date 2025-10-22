@@ -17,7 +17,7 @@ class ProcessSmsWebhookJob implements ShouldQueue, SmsWebhookJobInterface
 
     public function __construct(public array $payload, public ?string $secret = null)
     {
-        if ($queue = config('hypersender-laravel.sms_queue')) {
+        if ($queue = config('hypersender-config.sms_queue')) {
             $this->onQueue($queue);
         }
     }

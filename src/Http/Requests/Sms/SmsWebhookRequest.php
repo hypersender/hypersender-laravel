@@ -24,7 +24,7 @@ class SmsWebhookRequest extends FormRequest
     public function withValidator(Validator $validator): void
     {
         $validator->after(function (Validator $validator) {
-            $authorizationSecret = config('hypersender-laravel.sms_webhook_authorization_secret');
+            $authorizationSecret = config('hypersender-config.sms_webhook_authorization_secret');
 
             if ($authorizationSecret === null || $authorizationSecret === '') {
                 return;
