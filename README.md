@@ -4,7 +4,7 @@
 <a href="https://github.com/hypersender/hypersender-laravel/actions/workflows/run-tests.yml"><img src="https://github.com/hypersender/hypersender-laravel/actions/workflows/run-tests.yml/badge.svg" alt="Build Status"></a>
 <a href="https://packagist.org/packages/hypersender/hypersender-laravel"><img src="https://img.shields.io/packagist/dt/hypersender/hypersender-laravel" alt="Total Downloads"></a>
 <a href="https://packagist.org/packages/hypersender/hypersender-laravel"><img src="https://img.shields.io/packagist/v/hypersender/hypersender-laravel" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/hypersender/hypersender-laravel"><img src="https://img.shields.io/packagist/l/hypersender/hypersender-laravel" alt="License"></a>
+<a href="https://github.com/hypersender/hypersender-laravel/blob/master/LICENSE.md"><img src="https://img.shields.io/badge/license-MIT-brightgreen.svg" alt="License"></a>
 </p>
 
 # Introduction
