@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Queue;
 
 beforeEach(function () {
     $this->endpoint = 'https://app.hypersender.com/api/whatsapp/v1';
-    $this->instanceId = config('hypersender-laravel.whatsapp_instance_id');
+    $this->instanceId = config('hypersender-config.whatsapp_instance_id');
 });
 
 describe('safe send text (job dispatch)', function () {

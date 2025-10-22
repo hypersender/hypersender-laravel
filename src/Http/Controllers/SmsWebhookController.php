@@ -10,7 +10,7 @@ class SmsWebhookController extends Controller
 {
     public function __invoke(SmsWebhookRequest $request)
     {
-        $jobClass = config('hypersender-laravel.sms_webhook_job');
+        $jobClass = config('hypersender-config.sms_webhook_job');
 
         if (! is_string($jobClass) || ! class_exists($jobClass)) {
             abort(500, 'Invalid SMS webhook job class.');

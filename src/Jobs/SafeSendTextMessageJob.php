@@ -19,7 +19,7 @@ class SafeSendTextMessageJob implements SafeSendTextMessageJobInterface, ShouldQ
 
     public function __construct(public array $payload)
     {
-        if ($queue = config('hypersender-laravel.whatsapp_queue')) {
+        if ($queue = config('hypersender-config.whatsapp_queue')) {
             $this->onQueue($queue);
         }
     }
