@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Http;
 
 beforeEach(function () {
     $this->endpoint = 'https://app.hypersender.com/api/sms/v1';
-    $this->instanceId = config('hypersender-laravel.sms_instance_id');
+    $this->instanceId = config('hypersender-config.sms_instance_id');
 });
 
 it('can index messages', function () {

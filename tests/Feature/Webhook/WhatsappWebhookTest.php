@@ -17,15 +17,15 @@ it('dispatches WhatsApp webhook events', function (\Closure $payloadFactory, str
 
     $basePayload = $payloadFactory();
 
-    Config::set('hypersender-laravel.whatsapp_webhook_job', ProcessWhatsappWebhookJob::class);
+    Config::set('hypersender-config.whatsapp_webhook_job', ProcessWhatsappWebhookJob::class);
 
     $payload = [
         'event' => $basePayload['event'],
         'data' => $basePayload['data'],
     ];
 
-    $route = config('hypersender-laravel.whatsapp_webhook_route');
-    $authorizationSecret = config('hypersender-laravel.whatsapp_webhook_authorization_secret');
+    $route = config('hypersender-config.whatsapp_webhook_route');
+    $authorizationSecret = config('hypersender-config.whatsapp_webhook_authorization_secret');
 
     $response = $this->postJson("/{$route}", $payload, [
         'authorization' => $authorizationSecret,
