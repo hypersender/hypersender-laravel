@@ -21,15 +21,15 @@ it('dispatches SMS webhook events', function (\Closure $payloadFactory, string $
 
     $basePayload = $payloadFactory();
 
-    Config::set('hypersender-laravel.sms_webhook_job', ProcessSmsWebhookJob::class);
+    Config::set('hypersender-config.sms_webhook_job', ProcessSmsWebhookJob::class);
 
     $payload = [
         'event' => $basePayload['event'],
         'data' => $basePayload['data'],
     ];
 
-    $route = config('hypersender-laravel.sms_webhook_route');
-    $authorizationSecret = config('hypersender-laravel.sms_webhook_authorization_secret');
+    $route = config('hypersender-config.sms_webhook_route');
+    $authorizationSecret = config('hypersender-config.sms_webhook_authorization_secret');
 
     $response = $this->postJson("/{$route}", $payload, [
         'authorization' => $authorizationSecret,

@@ -17,7 +17,7 @@ class ProcessWhatsappWebhookJob implements ShouldQueue, WhatsappWebhookJobInterf
 
     public function __construct(public array $payload, public ?string $secret = null)
     {
-        if ($queue = config('hypersender-laravel.whatsapp_queue')) {
+        if ($queue = config('hypersender-config.whatsapp_queue')) {
             $this->onQueue($queue);
         }
     }
