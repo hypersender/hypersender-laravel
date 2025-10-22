@@ -14,13 +14,13 @@ class HypersenderServiceProvider extends PackageServiceProvider
     public function configurePackage(Package $package): void
     {
         $package
-            ->name('hypersender-laravel')
+            ->name('hypersender-config')
             ->hasConfigFile()
             ->hasRoutes('webhook');
 
         $this->publishes([
-            __DIR__.'/../config/hypersender-laravel.php' => config_path('hypersender-laravel.php'),
-        ], 'hypersender-laravel-config');
+            __DIR__.'/../config/hypersender-config.php' => config_path('hypersender-config.php'),
+        ], 'hypersender-config');
     }
 
     public function packageRegistered(): void
@@ -30,8 +30,8 @@ class HypersenderServiceProvider extends PackageServiceProvider
         $this->app->singleton(HypersenderWhatsappService::class);
         $this->app->singleton(HypersenderSmsService::class);
 
-        $this->app->bind(WhatsappWebhookJobInterface::class, config('hypersender-laravel.whatsapp_webhook_job'));
+        $this->app->bind(WhatsappWebhookJobInterface::class, config('hypersender-config.whatsapp_webhook_job'));
 
-        $this->app->bind(SmsWebhookJobInterface::class, config('hypersender-laravel.sms_webhook_job'));
+        $this->app->bind(SmsWebhookJobInterface::class, config('hypersender-config.sms_webhook_job'));
     }
 }

@@ -24,7 +24,7 @@ class WhatsappWebhookRequest extends FormRequest
     public function withValidator(Validator $validator): void
     {
         $validator->after(function (Validator $validator) {
-            $authorizationSecret = config('hypersender-laravel.whatsapp_webhook_authorization_secret');
+            $authorizationSecret = config('hypersender-config.whatsapp_webhook_authorization_secret');
 
             if ($authorizationSecret === null || $authorizationSecret === '') {
                 return;
