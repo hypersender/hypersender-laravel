@@ -12,8 +12,8 @@ class HypersenderWhatsappClient extends AbstractClient
     public function __construct()
     {
         $baseUrl = 'https://app.hypersender.com/api/whatsapp/v1';
-        $apiKey = Config::get('hypersender-laravel.whatsapp_api_key', env('HYPERSENDER_WHATSAPP_API_KEY'));
-        $instanceId = Config::get('hypersender-laravel.whatsapp_instance_id', env('HYPERSENDER_WHATSAPP_INSTANCE_ID'));
+        $apiKey = Config::get('hypersender-config.whatsapp_api_key', env('HYPERSENDER_WHATSAPP_API_KEY'));
+        $instanceId = Config::get('hypersender-config.whatsapp_instance_id', env('HYPERSENDER_WHATSAPP_INSTANCE_ID'));
 
         parent::__construct($baseUrl, $apiKey, $instanceId);
     }

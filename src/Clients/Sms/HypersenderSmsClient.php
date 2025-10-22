@@ -14,8 +14,8 @@ class HypersenderSmsClient extends AbstractClient
     public function __construct()
     {
         $baseUrl = 'https://app.hypersender.com/api/sms/v1';
-        $apiKey = Config::get('hypersender-laravel.sms_api_key', env('HYPERSENDER_SMS_API_KEY'));
-        $instanceId = Config::get('hypersender-laravel.sms_instance_id', env('HYPERSENDER_SMS_INSTANCE_ID'));
+        $apiKey = Config::get('hypersender-config.sms_api_key', env('HYPERSENDER_SMS_API_KEY'));
+        $instanceId = Config::get('hypersender-config.sms_instance_id', env('HYPERSENDER_SMS_INSTANCE_ID'));
 
         parent::__construct($baseUrl, $apiKey, $instanceId);
     }
