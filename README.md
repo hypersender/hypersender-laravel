@@ -1,4 +1,4 @@
-<p align="center"><img width="307" height="63" src="/art/hy.jpg" alt="Hypersender Logo"></p>
+<p align="center"><img width="307" height="63" src="/art/hy.svg" alt="Hypersender Logo"></p>
 
 <p align="center">
 <a href="https://github.com/hypersender/hypersender-laravel/actions/workflows/run-tests.yml"><img src="https://github.com/hypersender/hypersender-laravel/actions/workflows/run-tests.yml/badge.svg" alt="Build Status"></a>
