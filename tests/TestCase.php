@@ -27,6 +27,7 @@ class TestCase extends Orchestra
     public function getEnvironmentSetUp($app)
     {
         config()->set('database.default', 'testing');
+        config()->set('hypersender-config.whatsapp_base_url', env('HYPERSENDER_WHATSAPP_BASE_URL', 'https://app.hypersender.com/api/whatsapp/v2'));
 
         /* WhatsApp */
         config()->set('hypersender-config.whatsapp_instance_id', 'test-instance');
