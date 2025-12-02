@@ -11,7 +11,7 @@ return [
     'whatsapp_webhook_route' => env('HYPERSENDER_WHATSAPP_WEBHOOK_ROUTE', 'whatsapp/webhook'),
     'whatsapp_webhook_job' => env('HYPERSENDER_WHATSAPP_WEBHOOK_JOB', ProcessWhatsappWebhookJob::class),
     'whatsapp_queue' => env('HYPERSENDER_WHATSAPP_QUEUE', 'default'),
-    'whatsapp_base_url' => env('HYPERSENDER_WHATSAPP_BASE_URL','https://app.hypersender.com/api/whatsapp/v2'),
+    'whatsapp_base_url' => env('HYPERSENDER_WHATSAPP_BASE_URL', 'https://app.hypersender.com/api/whatsapp/v2'),
 
     /* SMS */
     'sms_api_key' => env('HYPERSENDER_SMS_API_KEY'),
