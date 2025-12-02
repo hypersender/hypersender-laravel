@@ -1,114 +1,61 @@
 <?php
 
 use Hypersender\Hypersender;
-use Hypersender\Jobs\SafeSendTextMessageJob;
-use Illuminate\Http\Client\Request;
 use Illuminate\Http\UploadedFile;
+use Illuminate\Http\Client\Request;
 use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Facades\Queue;
+use Illuminate\Support\Facades\Config;
 
 beforeEach(function () {
-    $this->endpoint = 'https://app.hypersender.com/api/whatsapp/v1';
+    $this->endpoint = Config::get('hypersender-config.whatsapp_base_url',env('HYPERSENDER_WHATSAPP_BASE_URL'));
     $this->instanceId = config('hypersender-config.whatsapp_instance_id');
 });
 
-describe('safe send text (job dispatch)', function () {
-    it('dispatches job with preview enabled flags', function () {
-        Queue::fake();
-
+describe('safe send text', function () {
+    it('can send a text message safely with preview enabled flags', function () {
         $payload = sendTextEndpointPayload();
 
         Http::fake([
-            "{$this->endpoint}/{$this->instanceId}/read-chat*" => Http::response([], 200),
-            "{$this->endpoint}/{$this->instanceId}/start-typing" => Http::response(['result' => true], 200),
-            "{$this->endpoint}/{$this->instanceId}/send-text" => Http::response($payload['with_preview'], 200),
-            "{$this->endpoint}/{$this->instanceId}/stop-typing" => Http::response(['result' => true], 200),
+            "{$this->endpoint}/{$this->instanceId}/send-text-safe" => Http::response($payload['with_preview'], 200),
         ]);
 
-        Hypersender::whatsapp()->safeSendTextMessage('123@c.us', 'Hello', 'reply-id', true, true);
+        $response = Hypersender::whatsapp()->safeSendTextMessage('123@c.us', 'Hello', 'reply-id', true, true);
 
-        $pushedJob = null;
-        Queue::assertPushed(SafeSendTextMessageJob::class, function (SafeSendTextMessageJob $job) use (&$pushedJob) {
-            $pushedJob = $job;
-
-            return $job->payload === [
-                'chat_id' => '123@c.us',
-                'text' => 'Hello',
-                'reply_to' => 'reply-id',
-                'link_preview' => true,
-                'link_preview_high_quality' => true,
-            ];
-        });
-
-        // Run the job synchronously to assert the downstream HTTP call and its response
-        expect($pushedJob)->toBeInstanceOf(SafeSendTextMessageJob::class);
-        /** @var SafeSendTextMessageJob $pushedJob */
-        $pushedJob->handle();
-
-        $found = collect(Http::recorded())->contains(function (array $pair) use ($payload) {
-            [$request, $response] = $pair;
-
-            return $request->url() === "{$this->endpoint}/{$this->instanceId}/send-text"
+        Http::assertSent(function (Request $request) {
+            return $request->url() === "{$this->endpoint}/{$this->instanceId}/send-text-safe"
                 && $request->data() === [
                     'chatId' => '123@c.us',
                     'text' => 'Hello',
                     'reply_to' => 'reply-id',
                     'link_preview' => true,
                     'link_preview_high_quality' => true,
-                ]
-                && $response->json() === $payload['with_preview'];
+                ];
         });
 
-        expect($found)->toBeTrue();
+        expect($response->json())->toBe($payload['with_preview']);
     });
 
-    it('dispatches job with preview disabled flags', function () {
-        Queue::fake();
-
+    it('can send a text message safely with preview disabled flags', function () {
         $payload = sendTextEndpointPayload();
 
         Http::fake([
-            "{$this->endpoint}/{$this->instanceId}/read-chat*" => Http::response([], 200),
-            "{$this->endpoint}/{$this->instanceId}/start-typing" => Http::response(['result' => true], 200),
-            "{$this->endpoint}/{$this->instanceId}/send-text" => Http::response($payload['without_preview'], 200),
-            "{$this->endpoint}/{$this->instanceId}/stop-typing" => Http::response(['result' => true], 200),
+            "{$this->endpoint}/{$this->instanceId}/send-text-safe" => Http::response($payload['without_preview'], 200),
         ]);
 
-        Hypersender::whatsapp()->safeSendTextMessage('123@c.us', 'Hello', 'reply-id', false, false);
+        $response = Hypersender::whatsapp()->safeSendTextMessage('123@c.us', 'Hello', 'reply-id', false, false);
 
-        $pushedJob = null;
-        Queue::assertPushed(SafeSendTextMessageJob::class, function (SafeSendTextMessageJob $job) use (&$pushedJob) {
-            $pushedJob = $job;
-
-            return $job->payload === [
-                'chat_id' => '123@c.us',
-                'text' => 'Hello',
-                'reply_to' => 'reply-id',
-                'link_preview' => false,
-                'link_preview_high_quality' => false,
-            ];
-        });
-
-        // Run the job synchronously to assert the downstream HTTP call and its response
-        expect($pushedJob)->toBeInstanceOf(SafeSendTextMessageJob::class);
-        /** @var SafeSendTextMessageJob $pushedJob */
-        $pushedJob->handle();
-
-        $found = collect(Http::recorded())->contains(function (array $pair) use ($payload) {
-            [$request, $response] = $pair;
-
-            return $request->url() === "{$this->endpoint}/{$this->instanceId}/send-text"
+        Http::assertSent(function (Request $request) {
+            return $request->url() === "{$this->endpoint}/{$this->instanceId}/send-text-safe"
                 && $request->data() === [
                     'chatId' => '123@c.us',
                     'text' => 'Hello',
                     'reply_to' => 'reply-id',
                     'link_preview' => false,
                     'link_preview_high_quality' => false,
-                ]
-                && $response->json() === $payload['without_preview'];
+                ];
         });
 
-        expect($found)->toBeTrue();
+        expect($response->json())->toBe($payload['without_preview']);
     });
 });
 
@@ -590,6 +537,24 @@ it('can delete a message', function () {
     Http::assertSent(function (Request $request) {
         return $request->url() === "{$this->endpoint}/{$this->instanceId}/delete-message?chatId=123%40c.us&messageId=message-id"
             && $request->data() === [];
+    });
+
+    expect($response->json())->toBe($payload);
+});
+
+it('can get a queued request', function () {
+    $payload = queuedRequestEndpointPayload();
+
+    $uuid = '550e8400-e29b-41d4-a716-446655440000';
+
+    Http::fake([
+        "{$this->endpoint}/{$this->instanceId}/queued-requests/{$uuid}" => Http::response($payload, 200),
+    ]);
+
+    $response = Hypersender::whatsapp()->getQueuedRequest($uuid);
+
+    Http::assertSent(function (Request $request) use ($uuid) {
+        return $request->url() === "{$this->endpoint}/{$this->instanceId}/queued-requests/{$uuid}";
     });
 
     expect($response->json())->toBe($payload);
