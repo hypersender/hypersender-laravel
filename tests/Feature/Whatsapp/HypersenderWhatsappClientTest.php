@@ -1,13 +1,13 @@
 <?php
 
 use Hypersender\Hypersender;
-use Illuminate\Http\UploadedFile;
 use Illuminate\Http\Client\Request;
-use Illuminate\Support\Facades\Http;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Http;
 
 beforeEach(function () {
-    $this->endpoint = Config::get('hypersender-config.whatsapp_base_url',env('HYPERSENDER_WHATSAPP_BASE_URL'));
+    $this->endpoint = Config::get('hypersender-config.whatsapp_base_url', env('HYPERSENDER_WHATSAPP_BASE_URL'));
     $this->instanceId = config('hypersender-config.whatsapp_instance_id');
 });
 
