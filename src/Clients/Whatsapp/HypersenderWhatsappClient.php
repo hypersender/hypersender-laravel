@@ -2,11 +2,9 @@
 
 namespace Hypersender\Clients\Whatsapp;
 
-
 use Hypersender\AbstractClient;
-
-use Illuminate\Http\UploadedFile;
 use Illuminate\Http\Client\Response;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Config;
 
 class HypersenderWhatsappClient extends AbstractClient
@@ -441,7 +439,7 @@ class HypersenderWhatsappClient extends AbstractClient
     /**
      * Get a queued request by UUID
      *
-     * @param string $uuid The UUID of the queued request
+     * @param  string  $uuid  The UUID of the queued request
      **/
     public function getQueuedRequest(string $uuid): Response
     {
