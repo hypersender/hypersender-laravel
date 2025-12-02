@@ -21,12 +21,11 @@ class HypersenderWhatsappClient extends AbstractClient
     /**
      * Send a text message safely with link preview options
      *
-     * @param string $chatId The chat ID to send the message to
-     * @param string $text The text content of the message
-     * @param string|null $replyTo The message ID to reply to (optional)
-     * @param bool|null $linkPreview Whether to show link preview (default: false)
-     * @param bool|null $linkPreviewHighQuality Whether to use high quality images for link preview (default: false)
-     * @return Response
+     * @param  string  $chatId  The chat ID to send the message to
+     * @param  string  $text  The text content of the message
+     * @param  string|null  $replyTo  The message ID to reply to (optional)
+     * @param  bool|null  $linkPreview  Whether to show link preview (default: false)
+     * @param  bool|null  $linkPreviewHighQuality  Whether to use high quality images for link preview (default: false)
      */
     public function safeSendTextMessage(
         string $chatId,
@@ -444,7 +443,6 @@ class HypersenderWhatsappClient extends AbstractClient
      * Get a queued request by UUID
      *
      * @param  string  $uuid  The UUID of the queued request
-     * @return Response
      */
     public function getQueuedRequest(string $uuid): Response
     {
