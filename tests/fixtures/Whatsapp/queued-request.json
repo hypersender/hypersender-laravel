@@ -1,0 +1,23 @@
+{
+    "uuid": "550e8400-e29b-41d4-a716-446655440000",
+    "request": {
+        "method": "POST",
+        "url": "https://api.example.com/webhook",
+        "headers": {
+            "Content-Type": "application/json"
+        },
+        "body": {
+            "chatId": "123@c.us",
+            "text": "Hello World"
+        }
+    },
+    "response_status": 200,
+    "response_body": {
+        "success": true,
+        "message": "Message sent successfully"
+    },
+    "response_header": {
+        "Content-Type": "application/json",
+        "X-Request-ID": "abc123"
+    }
+}
