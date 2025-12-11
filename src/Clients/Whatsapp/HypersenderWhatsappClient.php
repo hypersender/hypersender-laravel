@@ -11,11 +11,36 @@ class HypersenderWhatsappClient extends AbstractClient
 {
     public function __construct()
     {
-        $baseUrl = 'https://app.hypersender.com/api/whatsapp/v1';
+        $baseUrl = Config::get('hypersender-config.whatsapp_base_url', env('HYPERSENDER_WHATSAPP_BASE_URL'));
         $apiKey = Config::get('hypersender-config.whatsapp_api_key', env('HYPERSENDER_WHATSAPP_API_KEY'));
         $instanceId = Config::get('hypersender-config.whatsapp_instance_id', env('HYPERSENDER_WHATSAPP_INSTANCE_ID'));
 
         parent::__construct($baseUrl, $apiKey, $instanceId);
+    }
+
+    /**
+     * Send a text message safely with link preview options
+     *
+     * @param  string  $chatId  The chat ID to send the message to
+     * @param  string  $text  The text content of the message
+     * @param  string|null  $replyTo  The message ID to reply to (optional)
+     * @param  bool|null  $linkPreview  Whether to show link preview (default: false)
+     * @param  bool|null  $linkPreviewHighQuality  Whether to use high quality images for link preview (default: false)
+     */
+    public function safeSendTextMessage(
+        string $chatId,
+        string $text,
+        ?string $replyTo = null,
+        ?bool $linkPreview = null,
+        ?bool $linkPreviewHighQuality = null,
+    ): Response {
+        return $this->post('/send-text-safe', [
+            'chatId' => $chatId,
+            'text' => $text,
+            'reply_to' => $replyTo,
+            'link_preview' => $linkPreview,
+            'link_preview_high_quality' => $linkPreviewHighQuality,
+        ]);
     }
 
     /**
@@ -412,5 +437,15 @@ class HypersenderWhatsappClient extends AbstractClient
         ];
 
         return $this->delete('/delete-message', [], $query);
+    }
+
+    /**
+     * Get a queued request by UUID
+     *
+     * @param  string  $uuid  The UUID of the queued request
+     */
+    public function getQueuedRequest(string $uuid): Response
+    {
+        return $this->get("/queued-requests/{$uuid}");
     }
 }
