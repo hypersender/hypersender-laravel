@@ -6,6 +6,7 @@ use Hypersender\Contracts\SmsWebhookJobInterface;
 use Hypersender\Contracts\WhatsappWebhookJobInterface;
 use Hypersender\Services\HypersenderSmsService;
 use Hypersender\Services\HypersenderWhatsappService;
+use Hypersender\Services\OtpService;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 
@@ -29,6 +30,7 @@ class HypersenderServiceProvider extends PackageServiceProvider
 
         $this->app->singleton(HypersenderWhatsappService::class);
         $this->app->singleton(HypersenderSmsService::class);
+        $this->app->singleton(OtpService::class);
 
         $this->app->bind(WhatsappWebhookJobInterface::class, config('hypersender-config.whatsapp_webhook_job'));
 
