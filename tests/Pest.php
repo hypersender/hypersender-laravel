@@ -281,3 +281,25 @@ function messageSentWebhookPayload(): array
 
     return json_decode($payload, true);
 }
+
+// OTP
+function requestCodeEndpointPayload(): array
+{
+    $payload = file_get_contents(__DIR__.'/fixtures/Otp/request-code.json');
+
+    return json_decode($payload, true);
+}
+
+function validateCodeEndpointPayload(): array
+{
+    $payload = file_get_contents(__DIR__.'/fixtures/Otp/validate-code.json');
+
+    return json_decode($payload, true);
+}
+
+function generateLinkEndpointPayload(): array
+{
+    $payload = file_get_contents(__DIR__.'/fixtures/Otp/generate-link.json');
+
+    return json_decode($payload, true);
+}
