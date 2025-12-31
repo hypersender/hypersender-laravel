@@ -169,7 +169,7 @@ describe('send file', function () {
                 && $request->data() === [
                     'chatId' => '123@c.us',
                     'url' => 'https://example.com/file.pdf',
-                    'fileName' => 'file.pdf',
+                    'filename' => 'file.pdf',
                     'mimetype' => 'application/pdf',
                     'caption' => 'Caption',
                     'reply_to' => 'reply-id',
@@ -214,7 +214,7 @@ describe('send image', function () {
                 && $request->data() === [
                     'chatId' => '123@c.us',
                     'url' => 'https://example.com/image.png',
-                    'fileName' => 'image.png',
+                    'filename' => 'image.png',
                     'mimetype' => 'image/png',
                     'caption' => 'Caption',
                     'reply_to' => 'reply-id',
