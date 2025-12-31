@@ -135,7 +135,7 @@ class HypersenderWhatsappClient extends AbstractClient
         return $this->post('/send-file', [
             'chatId' => $chatId,
             'url' => $url,
-            'fileName' => $fileName,
+            'filename' => $fileName,
             'mimetype' => $mimeType,
             'caption' => $caption,
             'reply_to' => $replyTo,
@@ -158,7 +158,7 @@ class HypersenderWhatsappClient extends AbstractClient
         return $this->postMultipart('/send-file', [
             'chatId' => $chatId,
             'file' => $file,
-            'fileName' => $fileName,
+            'filename' => $fileName,
             'mimetype' => $mimeType,
             'caption' => $caption,
             'reply_to' => $replyTo,
@@ -181,7 +181,7 @@ class HypersenderWhatsappClient extends AbstractClient
         return $this->post('/send-image', [
             'chatId' => $chatId,
             'url' => $url,
-            'fileName' => $fileName,
+            'filename' => $fileName,
             'mimetype' => $mimeType,
             'caption' => $caption,
             'reply_to' => $replyTo,
@@ -204,7 +204,7 @@ class HypersenderWhatsappClient extends AbstractClient
         return $this->postMultipart('/send-image', [
             'chatId' => $chatId,
             'file' => $file,
-            'fileName' => $fileName,
+            'filename' => $fileName,
             'mimetype' => $mimeType,
             'caption' => $caption,
             'reply_to' => $replyTo,
