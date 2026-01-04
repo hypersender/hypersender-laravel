@@ -21,7 +21,7 @@ composer require hypersender/hypersender-laravel
 
 # Official Documentation
 
-You can find the official documentation at [Hypersender Laravel SDK Documentation](https://docs.hypersender.com/packages-and-sdks/laravel/installation).
+You can find the official documentation at [Hypersender Laravel SDK Documentation](https://docs.hypersender.com/v2/packages-and-sdks/laravel/installation).
 
 ## Changelog
 
