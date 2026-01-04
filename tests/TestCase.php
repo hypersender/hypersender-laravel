@@ -36,5 +36,10 @@ class TestCase extends Orchestra
         /* SMS */
         config()->set('hypersender-config.sms_instance_id', 'test-instance');
         config()->set('hypersender-config.sms_webhook_authorization_secret', 'x-sms-webhook');
+
+        /* OTP */
+        config()->set('hypersender-config.otp_base_url', env('HYPERSENDER_OTP_BASE_URL', 'https://app.hypersender.com/api/otp/v2'));
+        config()->set('hypersender-config.otp_api_key', 'test-api-key');
+        config()->set('hypersender-config.otp_instance_id', 'test-otp-instance');
     }
 }
