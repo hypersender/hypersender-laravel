@@ -16,7 +16,7 @@ use Hypersender\Jobs\ProcessSmsWebhookJob;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Event;
 
-it('dispatches SMS webhook events', function (\Closure $payloadFactory, string $expectedEventClass) {
+it('dispatches SMS webhook events', function (Closure $payloadFactory, string $expectedEventClass) {
     Event::fake();
 
     $basePayload = $payloadFactory();

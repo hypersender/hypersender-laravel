@@ -12,7 +12,7 @@ use Hypersender\Jobs\ProcessWhatsappWebhookJob;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Event;
 
-it('dispatches WhatsApp webhook events', function (\Closure $payloadFactory, string $expectedEventClass) {
+it('dispatches WhatsApp webhook events', function (Closure $payloadFactory, string $expectedEventClass) {
     Event::fake();
 
     $basePayload = $payloadFactory();
