@@ -43,14 +43,14 @@ class HypersenderSmsClient extends AbstractClient
         ?int $maxSendAttempts = null,
         ?int $messageExpirationSeconds = null,
     ): Response {
-        return $this->post('/send-message', [
+        return $this->post('/send-message', array_filter([
             'content' => $content,
             'request_id' => $requestId,
             'to' => $to,
             'schedule_send_at' => $scheduleSendAt,
             'max_send_attempts' => $maxSendAttempts,
             'message_expiration_seconds' => $messageExpirationSeconds,
-        ]);
+        ], fn ($value) => $value !== null));
     }
 
     /**
