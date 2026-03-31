@@ -55,9 +55,6 @@ it('can send sms message normally with required parameters only', function () {
                 'content' => $content,
                 'request_id' => $requestId,
                 'to' => $to,
-                'schedule_send_at' => null,
-                'max_send_attempts' => null,
-                'message_expiration_seconds' => null,
             ];
     });
 
@@ -90,8 +87,6 @@ it('can send scheduled sms message', function () {
                 'request_id' => $requestId,
                 'to' => $to,
                 'schedule_send_at' => $scheduleSendAt,
-                'max_send_attempts' => null,
-                'message_expiration_seconds' => null,
             ];
     });
 
@@ -126,7 +121,6 @@ it('can send sms with max attempts and expiration seconds', function () {
                 'content' => $content,
                 'request_id' => $requestId,
                 'to' => $to,
-                'schedule_send_at' => null,
                 'max_send_attempts' => $maxSendAttempts,
                 'message_expiration_seconds' => $messageExpirationSeconds,
             ];
