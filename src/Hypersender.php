@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Facade;
  * @method static \Hypersender\Services\HypersenderWhatsappService whatsapp()
  * @method static \Hypersender\Services\HypersenderSmsService sms()
  *
- * @see \Hypersender\HypersenderManager
+ * @see HypersenderManager
  */
 class Hypersender extends Facade
 {
