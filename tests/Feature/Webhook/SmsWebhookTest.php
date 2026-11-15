@@ -16,7 +16,7 @@ use Hypersender\Jobs\ProcessSmsWebhookJob;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Event;
 
-it('dispatches SMS webhook events', function (\Closure $payloadFactory, string $expectedEventClass) {
+it('dispatches SMS webhook events', function (Closure $payloadFactory, string $expectedEventClass) {
     Event::fake();
 
     $basePayload = $payloadFactory();
@@ -41,16 +41,16 @@ it('dispatches SMS webhook events', function (\Closure $payloadFactory, string $
         return $event->payload === $payload;
     });
 })->with([
-    'PhoneHeartbeatDisabled' => [fn () => heartbeatDisabledWebhookPayload(), PhoneHeartbeatDisabled::class],
-    'PhoneHeartbeatMissed' => [fn () => heartbeatMissedWebhookPayload(), PhoneHeartbeatMissed::class],
-    'PhoneHeartbeatOffline' => [fn () => heartbeatOfflineWebhookPayload(), PhoneHeartbeatOffline::class],
-    'PhoneHeartbeatOnline' => [fn () => heartbeatOnlineWebhookPayload(), PhoneHeartbeatOnline::class],
-    'PhoneHeartbeatReceived' => [fn () => heartbeatReceivedWebhookPayload(), PhoneHeartbeatReceived::class],
-    'MessageCallMissed' => [fn () => messageCallMissedWebhookPayload(), MessageCallMissed::class],
-    'MessagePhoneDelivered' => [fn () => messageDeliveredWebhookPayload(), MessagePhoneDelivered::class],
-    'MessageSendExpired' => [fn () => messageExpiredWebhookPayload(), MessageSendExpired::class],
-    'MessageSendFailed' => [fn () => messageFailedWebhookPayload(), MessageSendFailed::class],
-    'MessagePhoneReceived' => [fn () => messageReceivedWebhookPayload(), MessagePhoneReceived::class],
-    'MessageNotificationScheduled' => [fn () => messageScheduledWebhookPayload(), MessageNotificationScheduled::class],
-    'MessagePhoneSent' => [fn () => messageSentWebhookPayload(), MessagePhoneSent::class],
+    'PhoneHeartbeatDisabled' => [fn() => heartbeatDisabledWebhookPayload(), PhoneHeartbeatDisabled::class],
+    'PhoneHeartbeatMissed' => [fn() => heartbeatMissedWebhookPayload(), PhoneHeartbeatMissed::class],
+    'PhoneHeartbeatOffline' => [fn() => heartbeatOfflineWebhookPayload(), PhoneHeartbeatOffline::class],
+    'PhoneHeartbeatOnline' => [fn() => heartbeatOnlineWebhookPayload(), PhoneHeartbeatOnline::class],
+    'PhoneHeartbeatReceived' => [fn() => heartbeatReceivedWebhookPayload(), PhoneHeartbeatReceived::class],
+    'MessageCallMissed' => [fn() => messageCallMissedWebhookPayload(), MessageCallMissed::class],
+    'MessagePhoneDelivered' => [fn() => messageDeliveredWebhookPayload(), MessagePhoneDelivered::class],
+    'MessageSendExpired' => [fn() => messageExpiredWebhookPayload(), MessageSendExpired::class],
+    'MessageSendFailed' => [fn() => messageFailedWebhookPayload(), MessageSendFailed::class],
+    'MessagePhoneReceived' => [fn() => messageReceivedWebhookPayload(), MessagePhoneReceived::class],
+    'MessageNotificationScheduled' => [fn() => messageScheduledWebhookPayload(), MessageNotificationScheduled::class],
+    'MessagePhoneSent' => [fn() => messageSentWebhookPayload(), MessagePhoneSent::class],
 ]);

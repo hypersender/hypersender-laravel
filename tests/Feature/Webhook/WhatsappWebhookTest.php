@@ -12,7 +12,7 @@ use Hypersender\Jobs\ProcessWhatsappWebhookJob;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Event;
 
-it('dispatches WhatsApp webhook events', function (\Closure $payloadFactory, string $expectedEventClass) {
+it('dispatches WhatsApp webhook events', function (Closure $payloadFactory, string $expectedEventClass) {
     Event::fake();
 
     $basePayload = $payloadFactory();
@@ -37,12 +37,12 @@ it('dispatches WhatsApp webhook events', function (\Closure $payloadFactory, str
         return $event->payload === $payload;
     });
 })->with([
-    'PresenceUpdate' => [fn () => presenceUpdateWebhookPayload(), PresenceUpdate::class],
-    'MessageAny' => [fn () => messageAnyWebhookPayload(), MessageAny::class],
-    'MessageReaction' => [fn () => messageReactionWebhookPayload(), MessageReaction::class],
-    'MessageAck' => [fn () => messageAckWebhookPayload(), MessageAck::class],
-    'MessageWaiting' => [fn () => messageWaitingWebhookPayload(), MessageWaiting::class],
-    'MessageRevoked' => [fn () => messageRevokedWebhookPayload(), MessageRevoked::class],
-    'PollVote' => [fn () => pollVoteWebhookPayload(), PollVote::class],
-    'PollVoteFailed' => [fn () => pollVoteFailedWebhookPayload(), PollVoteFailed::class],
+    'PresenceUpdate' => [fn() => presenceUpdateWebhookPayload(), PresenceUpdate::class],
+    'MessageAny' => [fn() => messageAnyWebhookPayload(), MessageAny::class],
+    'MessageReaction' => [fn() => messageReactionWebhookPayload(), MessageReaction::class],
+    'MessageAck' => [fn() => messageAckWebhookPayload(), MessageAck::class],
+    'MessageWaiting' => [fn() => messageWaitingWebhookPayload(), MessageWaiting::class],
+    'MessageRevoked' => [fn() => messageRevokedWebhookPayload(), MessageRevoked::class],
+    'PollVote' => [fn() => pollVoteWebhookPayload(), PollVote::class],
+    'PollVoteFailed' => [fn() => pollVoteFailedWebhookPayload(), PollVoteFailed::class],
 ]);
