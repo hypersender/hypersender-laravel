@@ -77,6 +77,12 @@ jobs:
 
       - name: Install dependencies
         run: |
+          # Legacy framework releases are tested for compatibility in this isolated
+          # CI job, even though they no longer receive security fixes. Keep all
+          # other dependency policy checks enabled.
+          if [[ '${{ matrix.laravel }}' == '10.*' || '${{ matrix.laravel }}' == '11.*' ]]; then
+            php -r '$file = "composer.json"; $json = json_decode(file_get_contents($file), true, 512, JSON_THROW_ON_ERROR); $json["config"]["policy"]["advisories"]["ignore"]["laravel/framework"] = ["constraint" => "^10.0 || ^11.0", "reason" => "CI-only compatibility testing of unsupported Laravel versions", "on-block" => true, "on-audit" => false]; file_put_contents($file, json_encode($json, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_THROW_ON_ERROR) . PHP_EOL);'
+          fi
           composer require "laravel/framework:${{ matrix.laravel }}" "orchestra/testbench:${{ matrix.testbench }}" --no-interaction --no-update
           composer update --${{ matrix.stability }} --prefer-dist --no-interaction
 
