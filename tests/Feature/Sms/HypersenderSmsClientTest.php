@@ -157,6 +157,7 @@ it('can index message threads', function () {
         'isArchived' => true,
         'lastMessageId' => 'msg_1234567890abcdef',
         'fromOrToNumber' => '+201234567890',
+        'page' => '2',
     ]);
 
     $response = Hypersender::sms()->messageThreads($messagesRequest);

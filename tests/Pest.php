@@ -282,6 +282,27 @@ function messageSentWebhookPayload(): array
     return json_decode($payload, true);
 }
 
+function messageNotificationFailedWebhookPayload(): array
+{
+    $payload = file_get_contents(__DIR__.'/fixtures/Sms/Webhook/message-notification-failed.json');
+
+    return json_decode($payload, true);
+}
+
+function messageUssdWebhookPayload(): array
+{
+    $payload = file_get_contents(__DIR__.'/fixtures/Sms/Webhook/message-ussd.json');
+
+    return json_decode($payload, true);
+}
+
+function phoneLogoutWebhookPayload(): array
+{
+    $payload = file_get_contents(__DIR__.'/fixtures/Sms/Webhook/phone-logout.json');
+
+    return json_decode($payload, true);
+}
+
 // OTP
 function requestCodeEndpointPayload(): array
 {

@@ -30,7 +30,7 @@ class SmsWebhookRequest extends FormRequest
                 return;
             }
 
-            if ($this->header('authorization') !== $authorizationSecret) {
+            if (! hash_equals((string) $authorizationSecret, (string) $this->header('authorization'))) {
                 abort(401, 'Unauthorized SMS webhook request. Please check your authorization secret.');
             }
         });

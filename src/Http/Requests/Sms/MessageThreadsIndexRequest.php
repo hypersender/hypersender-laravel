@@ -21,6 +21,7 @@ class MessageThreadsIndexRequest
         public readonly ?bool $isArchived = null,
         public readonly ?string $lastMessageId = null,
         public readonly ?string $fromOrToNumber = null,
+        public readonly ?string $page = null,
     ) {}
 
     public function toQuery(): array
@@ -35,6 +36,7 @@ class MessageThreadsIndexRequest
                 'last_message_id' => $this->lastMessageId,
                 'from_or_to_number' => $this->fromOrToNumber,
             ],
+            'page' => $this->page,
         ]);
     }
 }
