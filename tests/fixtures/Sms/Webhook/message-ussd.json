@@ -1,0 +1,1 @@
+{"event": "message.phone.ussd", "data": {"message_id": "9e064045-039b-4f94-a378-aa47b86a7e3f", "phone_id": "9defcf1e-552c-4bef-a843-872edec576ef", "sim": "SIM1", "ussd": "Your balance is 25.40", "received_at": "2025-01-21 22:05:10"}}

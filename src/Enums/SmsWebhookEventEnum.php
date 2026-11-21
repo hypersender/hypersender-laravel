@@ -3,10 +3,12 @@
 namespace Hypersender\Enums;
 
 use Hypersender\Events\Sms\MessageCallMissed;
+use Hypersender\Events\Sms\MessageNotificationFailed;
 use Hypersender\Events\Sms\MessageNotificationScheduled;
 use Hypersender\Events\Sms\MessagePhoneDelivered;
 use Hypersender\Events\Sms\MessagePhoneReceived;
 use Hypersender\Events\Sms\MessagePhoneSent;
+use Hypersender\Events\Sms\MessagePhoneUssd;
 use Hypersender\Events\Sms\MessageSendExpired;
 use Hypersender\Events\Sms\MessageSendFailed;
 use Hypersender\Events\Sms\PhoneHeartbeatDisabled;
@@ -14,6 +16,7 @@ use Hypersender\Events\Sms\PhoneHeartbeatMissed;
 use Hypersender\Events\Sms\PhoneHeartbeatOffline;
 use Hypersender\Events\Sms\PhoneHeartbeatOnline;
 use Hypersender\Events\Sms\PhoneHeartbeatReceived;
+use Hypersender\Events\Sms\PhoneLogout;
 
 enum SmsWebhookEventEnum: string
 {
@@ -28,6 +31,13 @@ enum SmsWebhookEventEnum: string
     case MESSAGE_NOTIFICATION_SCHEDULED = 'message.notification.scheduled';
     case MESSAGE_PHONE_SENT = 'message.phone.sent';
     case MESSAGE_SEND_EXPIRED = 'message.send.expired';
+    case MESSAGE_NOTIFICATION_FAILED = 'message.notification.failed';
+    case MESSAGE_PHONE_USSD = 'message.phone.ussd';
+    case PHONE_LOGOUT = 'phone.logout';
+
+    /**
+     * @deprecated Hypersender no longer sends this event. Kept so existing listeners keep working.
+     */
     case MESSAGE_CALL_MISSED = 'message.call.missed';
 
     public function eventClass(): string
@@ -44,6 +54,9 @@ enum SmsWebhookEventEnum: string
             self::MESSAGE_NOTIFICATION_SCHEDULED => MessageNotificationScheduled::class,
             self::MESSAGE_PHONE_SENT => MessagePhoneSent::class,
             self::MESSAGE_SEND_EXPIRED => MessageSendExpired::class,
+            self::MESSAGE_NOTIFICATION_FAILED => MessageNotificationFailed::class,
+            self::MESSAGE_PHONE_USSD => MessagePhoneUssd::class,
+            self::PHONE_LOGOUT => PhoneLogout::class,
             self::MESSAGE_CALL_MISSED => MessageCallMissed::class,
         };
     }

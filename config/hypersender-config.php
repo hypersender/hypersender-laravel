@@ -20,7 +20,7 @@ return [
     'sms_webhook_route' => env('HYPERSENDER_SMS_WEBHOOK_ROUTE', 'sms/webhook'),
     'sms_webhook_job' => env('HYPERSENDER_SMS_WEBHOOK_JOB', ProcessSmsWebhookJob::class),
     'sms_queue' => env('HYPERSENDER_SMS_QUEUE', 'default'),
-    'sms_base_url' => env('HYPERSENDER_SMS_BASE_URL', 'https://app.hypersender.com/api/sms/v2'),
+    'sms_base_url' => env('HYPERSENDER_SMS_BASE_URL', 'https://app.hypersender.com/api/sms/v1'),
 
     /* OTP */
     'otp_base_url' => env('HYPERSENDER_OTP_BASE_URL', 'https://app.hypersender.com/api/otp/v2'),

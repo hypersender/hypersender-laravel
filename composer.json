@@ -60,7 +60,7 @@
                 "Hypersender\\HypersenderServiceProvider"
             ],
             "aliases": {
-                "Hypersender": "Hypersender\\Facades\\Hypersender"
+                "Hypersender": "Hypersender\\Hypersender"
             }
         }
     },
