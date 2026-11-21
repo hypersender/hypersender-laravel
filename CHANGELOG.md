@@ -4,6 +4,14 @@ All notable changes to `hypersender-laravel` will be documented in this file.
 
 ## What's Changed
 
+* fix(sms): default SMS base URL to v1 and accept all SMS webhook events by @osamanagi in https://github.com/hypersender/hypersender-laravel/pull/22
+
+**Full Changelog**: https://github.com/hypersender/hypersender-laravel/compare/v2.1.2...v2.3.0
+---
+* fix: update sendMessage method to filter out null parameters by @osamanagi in https://github.com/hypersender/hypersender-laravel/pull/20
+
+**Full Changelog**: https://github.com/hypersender/hypersender-laravel/compare/v2.1.1...v2.1.2
+---
 * feat: add OTP service and configuration support by @osamanagi in https://github.com/hypersender/hypersender-laravel/pull/17
 
 **Full Changelog**: https://github.com/hypersender/hypersender-laravel/compare/v2.0.1...v2.1.1
