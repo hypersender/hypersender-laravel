@@ -559,3 +559,83 @@ it('can get a queued request', function () {
 
     expect($response->json())->toBe($payload);
 });
+
+describe('lids', function () {
+    it('can get all known lids', function () {
+        $payload = [['lid' => '1111111@lid', 'pn' => '3333333@c.us']];
+
+        Http::fake([
+            "{$this->endpoint}/{$this->instanceId}/contacts/get-all-known-lids?limit=50&offset=10" => Http::response($payload, 200),
+        ]);
+
+        $response = Hypersender::whatsapp()->getAllKnownLids(50, 10);
+
+        Http::assertSent(function (Request $request) {
+            return $request->method() === 'GET'
+                && $request->url() === "{$this->endpoint}/{$this->instanceId}/contacts/get-all-known-lids?limit=50&offset=10";
+        });
+
+        expect($response->json())->toBe($payload);
+    });
+
+    it('omits pagination when not given', function () {
+        Http::fake([
+            "{$this->endpoint}/{$this->instanceId}/contacts/get-all-known-lids" => Http::response([], 200),
+        ]);
+
+        Hypersender::whatsapp()->getAllKnownLids();
+
+        Http::assertSent(function (Request $request) {
+            return $request->url() === "{$this->endpoint}/{$this->instanceId}/contacts/get-all-known-lids";
+        });
+    });
+
+    it('can get the lids count', function () {
+        Http::fake([
+            "{$this->endpoint}/{$this->instanceId}/contacts/get-lids-count" => Http::response(['count' => 123], 200),
+        ]);
+
+        $response = Hypersender::whatsapp()->getLidsCount();
+
+        Http::assertSent(function (Request $request) {
+            return $request->method() === 'GET'
+                && $request->url() === "{$this->endpoint}/{$this->instanceId}/contacts/get-lids-count";
+        });
+
+        expect($response->json())->toBe(['count' => 123]);
+    });
+
+    it('can get a phone number by lid', function () {
+        $payload = ['lid' => '1111111@lid', 'pn' => '3333333@c.us'];
+
+        Http::fake([
+            "{$this->endpoint}/{$this->instanceId}/contacts/get-phone-number-by-lid*" => Http::response($payload, 200),
+        ]);
+
+        $response = Hypersender::whatsapp()->getPhoneNumberByLid('1111111@lid');
+
+        Http::assertSent(function (Request $request) {
+            return $request->method() === 'GET'
+                && $request->url() === "{$this->endpoint}/{$this->instanceId}/contacts/get-phone-number-by-lid?lid=1111111%40lid";
+        });
+
+        expect($response->json())->toBe($payload);
+    });
+
+    it('can get a lid by phone number', function () {
+        $payload = ['lid' => '1111111@lid', 'pn' => '3333333@c.us'];
+
+        Http::fake([
+            "{$this->endpoint}/{$this->instanceId}/contacts/get-lid-by-phone-number*" => Http::response($payload, 200),
+        ]);
+
+        $response = Hypersender::whatsapp()->getLidByPhoneNumber('3333333@c.us');
+
+        Http::assertSent(function (Request $request) {
+            return $request->method() === 'GET'
+                && $request->url() === "{$this->endpoint}/{$this->instanceId}/contacts/get-lid-by-phone-number?phoneNumber=3333333%40c.us";
+        });
+
+        expect($response->json())->toBe($payload);
+    });
+});

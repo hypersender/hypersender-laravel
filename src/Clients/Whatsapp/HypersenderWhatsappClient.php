@@ -448,4 +448,50 @@ class HypersenderWhatsappClient extends AbstractClient
     {
         return $this->get("/queued-requests/{$uuid}");
     }
+
+    /**
+     * Get all known LID to phone number mappings
+     *
+     * @param  int|null  $limit  Maximum number of mappings to return (API default: 100)
+     * @param  int|null  $offset  Number of mappings to skip (API default: 0)
+     */
+    public function getAllKnownLids(?int $limit = null, ?int $offset = null): Response
+    {
+        return $this->get('/contacts/get-all-known-lids', [
+            'limit' => $limit,
+            'offset' => $offset,
+        ]);
+    }
+
+    /**
+     * Get the count of known LID mappings
+     */
+    public function getLidsCount(): Response
+    {
+        return $this->get('/contacts/get-lids-count');
+    }
+
+    /**
+     * Get the phone number linked to a LID
+     *
+     * @param  string  $lid  e.g. "1111111@lid" or "1111111"
+     */
+    public function getPhoneNumberByLid(string $lid): Response
+    {
+        return $this->get('/contacts/get-phone-number-by-lid', [
+            'lid' => $lid,
+        ]);
+    }
+
+    /**
+     * Get the LID linked to a phone number
+     *
+     * @param  string  $phoneNumber  e.g. "3333333@c.us" or "3333333"
+     */
+    public function getLidByPhoneNumber(string $phoneNumber): Response
+    {
+        return $this->get('/contacts/get-lid-by-phone-number', [
+            'phoneNumber' => $phoneNumber,
+        ]);
+    }
 }

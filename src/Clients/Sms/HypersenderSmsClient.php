@@ -50,7 +50,7 @@ class HypersenderSmsClient extends AbstractClient
             'schedule_send_at' => $scheduleSendAt,
             'max_send_attempts' => $maxSendAttempts,
             'message_expiration_seconds' => $messageExpirationSeconds,
-        ], fn($value) => $value !== null));
+        ], fn ($value) => $value !== null));
     }
 
     /**

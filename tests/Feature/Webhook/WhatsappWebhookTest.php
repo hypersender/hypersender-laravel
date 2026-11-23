@@ -37,12 +37,12 @@ it('dispatches WhatsApp webhook events', function (Closure $payloadFactory, stri
         return $event->payload === $payload;
     });
 })->with([
-    'PresenceUpdate' => [fn() => presenceUpdateWebhookPayload(), PresenceUpdate::class],
-    'MessageAny' => [fn() => messageAnyWebhookPayload(), MessageAny::class],
-    'MessageReaction' => [fn() => messageReactionWebhookPayload(), MessageReaction::class],
-    'MessageAck' => [fn() => messageAckWebhookPayload(), MessageAck::class],
-    'MessageWaiting' => [fn() => messageWaitingWebhookPayload(), MessageWaiting::class],
-    'MessageRevoked' => [fn() => messageRevokedWebhookPayload(), MessageRevoked::class],
-    'PollVote' => [fn() => pollVoteWebhookPayload(), PollVote::class],
-    'PollVoteFailed' => [fn() => pollVoteFailedWebhookPayload(), PollVoteFailed::class],
+    'PresenceUpdate' => [fn () => presenceUpdateWebhookPayload(), PresenceUpdate::class],
+    'MessageAny' => [fn () => messageAnyWebhookPayload(), MessageAny::class],
+    'MessageReaction' => [fn () => messageReactionWebhookPayload(), MessageReaction::class],
+    'MessageAck' => [fn () => messageAckWebhookPayload(), MessageAck::class],
+    'MessageWaiting' => [fn () => messageWaitingWebhookPayload(), MessageWaiting::class],
+    'MessageRevoked' => [fn () => messageRevokedWebhookPayload(), MessageRevoked::class],
+    'PollVote' => [fn () => pollVoteWebhookPayload(), PollVote::class],
+    'PollVoteFailed' => [fn () => pollVoteFailedWebhookPayload(), PollVoteFailed::class],
 ]);
