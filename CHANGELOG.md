@@ -4,6 +4,10 @@ All notable changes to `hypersender-laravel` will be documented in this file.
 
 ## What's Changed
 
+* feat(whatsapp): add LID lookup methods by @osamanagi in https://github.com/hypersender/hypersender-laravel/pull/24
+
+**Full Changelog**: https://github.com/hypersender/hypersender-laravel/compare/v2.3.0...v2.4.0
+---
 * fix(sms): default SMS base URL to v1 and accept all SMS webhook events by @osamanagi in https://github.com/hypersender/hypersender-laravel/pull/22
 
 **Full Changelog**: https://github.com/hypersender/hypersender-laravel/compare/v2.1.2...v2.3.0
