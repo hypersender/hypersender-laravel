@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Facade;
  * @method static \Hypersender\Services\HypersenderWhatsappService whatsapp()
  * @method static \Hypersender\Services\HypersenderSmsService sms()
  * @method static \Hypersender\Services\OtpService otp()
+ * @method static \Hypersender\Services\EnterpriseService enterprise()
  *
  * @see HypersenderManager
  */

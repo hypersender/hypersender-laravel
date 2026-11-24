@@ -639,3 +639,100 @@ describe('lids', function () {
         expect($response->json())->toBe($payload);
     });
 });
+
+describe('contacts', function () {
+    it('can check if a contact exists', function () {
+        $payload = ['numberExists' => true, 'chatId' => '20123456789@c.us'];
+
+        Http::fake([
+            "{$this->endpoint}/{$this->instanceId}/contacts/check-exists" => Http::response($payload, 200),
+        ]);
+
+        $response = Hypersender::whatsapp()->checkContactExists('20123456789');
+
+        Http::assertSent(function (Request $request) {
+            return $request->method() === 'POST'
+                && $request->url() === "{$this->endpoint}/{$this->instanceId}/contacts/check-exists"
+                && $request->data() === ['phone' => '20123456789'];
+        });
+
+        expect($response->json())->toBe($payload);
+    });
+
+    it('can get all contacts', function () {
+        $payload = ['message' => 'Contacts retrieved successfully.', 'data' => []];
+        $url = "{$this->endpoint}/{$this->instanceId}/contacts/get-all?limit=50&offset=10&sort_by=id&sort_order=desc";
+
+        Http::fake([$url => Http::response($payload, 200)]);
+
+        $response = Hypersender::whatsapp()->getAllContacts(50, 10, 'id', 'desc');
+
+        Http::assertSent(fn (Request $request) => $request->method() === 'GET' && $request->url() === $url);
+
+        expect($response->json())->toBe($payload);
+    });
+
+    it('omits contact pagination when not given', function () {
+        Http::fake([
+            "{$this->endpoint}/{$this->instanceId}/contacts/get-all" => Http::response([], 200),
+        ]);
+
+        Hypersender::whatsapp()->getAllContacts();
+
+        Http::assertSent(fn (Request $request) => $request->url() === "{$this->endpoint}/{$this->instanceId}/contacts/get-all");
+    });
+
+    it('can get a contact', function () {
+        $payload = ['message' => 'Contact retrieved successfully.', 'data' => ['id' => '100875997589545@lid']];
+        $url = "{$this->endpoint}/{$this->instanceId}/contacts/get?chat_id=100875997589545%40lid";
+
+        Http::fake([$url => Http::response($payload, 200)]);
+
+        $response = Hypersender::whatsapp()->getContact('100875997589545@lid');
+
+        Http::assertSent(fn (Request $request) => $request->method() === 'GET' && $request->url() === $url);
+
+        expect($response->json())->toBe($payload);
+    });
+
+    it('can get a profile picture', function () {
+        $payload = ['message' => 'Profile picture retrieved successfully.', 'data' => ['profilePictureURL' => 'https://example.com/p.jpg']];
+        $url = "{$this->endpoint}/{$this->instanceId}/contacts/profile-picture?chat_id=20123456789";
+
+        Http::fake([$url => Http::response($payload, 200)]);
+
+        $response = Hypersender::whatsapp()->getProfilePicture('20123456789');
+
+        Http::assertSent(fn (Request $request) => $request->method() === 'GET' && $request->url() === $url);
+
+        expect($response->json())->toBe($payload);
+    });
+
+    it('can upsert a contact', function () {
+        $payload = ['message' => 'Contact upserted successfully.', 'data' => ['success' => true]];
+
+        Http::fake([
+            "{$this->endpoint}/{$this->instanceId}/contacts/upsert" => Http::response($payload, 200),
+        ]);
+
+        $response = Hypersender::whatsapp()->upsertContact('1234567890@c.us', 'John', 'Doe');
+
+        Http::assertSent(function (Request $request) {
+            return $request->method() === 'POST'
+                && $request->url() === "{$this->endpoint}/{$this->instanceId}/contacts/upsert"
+                && $request->data() === ['chat_id' => '1234567890@c.us', 'first_name' => 'John', 'last_name' => 'Doe'];
+        });
+
+        expect($response->json())->toBe($payload);
+    });
+
+    it('omits last name when upserting without one', function () {
+        Http::fake([
+            "{$this->endpoint}/{$this->instanceId}/contacts/upsert" => Http::response([], 200),
+        ]);
+
+        Hypersender::whatsapp()->upsertContact('1234567890@c.us', 'John');
+
+        Http::assertSent(fn (Request $request) => $request->data() === ['chat_id' => '1234567890@c.us', 'first_name' => 'John']);
+    });
+});

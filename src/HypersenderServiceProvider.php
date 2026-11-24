@@ -4,6 +4,7 @@ namespace Hypersender;
 
 use Hypersender\Contracts\SmsWebhookJobInterface;
 use Hypersender\Contracts\WhatsappWebhookJobInterface;
+use Hypersender\Services\EnterpriseService;
 use Hypersender\Services\HypersenderSmsService;
 use Hypersender\Services\HypersenderWhatsappService;
 use Hypersender\Services\OtpService;
@@ -31,6 +32,7 @@ class HypersenderServiceProvider extends PackageServiceProvider
         $this->app->singleton(HypersenderWhatsappService::class);
         $this->app->singleton(HypersenderSmsService::class);
         $this->app->singleton(OtpService::class);
+        $this->app->singleton(EnterpriseService::class);
 
         $this->app->bind(WhatsappWebhookJobInterface::class, config('hypersender-config.whatsapp_webhook_job'));
 

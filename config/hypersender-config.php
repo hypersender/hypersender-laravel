@@ -26,4 +26,8 @@ return [
     'otp_base_url' => env('HYPERSENDER_OTP_BASE_URL', 'https://app.hypersender.com/api/otp/v2'),
     'otp_api_key' => env('HYPERSENDER_OTP_API_KEY'),
     'otp_instance_id' => env('HYPERSENDER_OTP_INSTANCE_ID'),
+
+    /* Enterprise (instance management) */
+    'enterprise_base_url' => env('HYPERSENDER_ENTERPRISE_BASE_URL', 'https://app.hypersender.com/api/whatsapp/v2'),
+    'enterprise_api_key' => env('HYPERSENDER_ENTERPRISE_API_KEY'),
 ];

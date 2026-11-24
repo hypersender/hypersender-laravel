@@ -494,4 +494,78 @@ class HypersenderWhatsappClient extends AbstractClient
             'phoneNumber' => $phoneNumber,
         ]);
     }
+
+    /**
+     * Check if a phone number has a WhatsApp account
+     *
+     * @param  string  $phone  Phone number with country code, without + or spaces (e.g. "20123456789")
+     */
+    public function checkContactExists(string $phone): Response
+    {
+        return $this->post('/contacts/check-exists', [
+            'phone' => $phone,
+        ]);
+    }
+
+    /**
+     * Get all contacts
+     *
+     * @param  int|null  $limit  Number of contacts to return, 1-1000 (API default: 100)
+     * @param  int|null  $offset  Number of contacts to skip (API default: 0)
+     * @param  string|null  $sortBy  "id" or "name" (API default: "name")
+     * @param  string|null  $sortOrder  "asc" or "desc" (API default: "asc")
+     */
+    public function getAllContacts(
+        ?int $limit = null,
+        ?int $offset = null,
+        ?string $sortBy = null,
+        ?string $sortOrder = null,
+    ): Response {
+        return $this->get('/contacts/get-all', [
+            'limit' => $limit,
+            'offset' => $offset,
+            'sort_by' => $sortBy,
+            'sort_order' => $sortOrder,
+        ]);
+    }
+
+    /**
+     * Get a contact
+     *
+     * @param  string  $chatId  Phone number ("123123123") or chat ID ("123123@c.us" or "123123@lid")
+     */
+    public function getContact(string $chatId): Response
+    {
+        return $this->get('/contacts/get', [
+            'chat_id' => $chatId,
+        ]);
+    }
+
+    /**
+     * Get a contact's profile picture URL
+     *
+     * @param  string  $chatId  Phone number ("123123123") or chat ID ("123123@c.us" or "123123@lid")
+     */
+    public function getProfilePicture(string $chatId): Response
+    {
+        return $this->get('/contacts/profile-picture', [
+            'chat_id' => $chatId,
+        ]);
+    }
+
+    /**
+     * Create or update a contact
+     *
+     * @param  string  $chatId  Phone number ("123123123") or chat ID ("123123@c.us" or "123123@lid")
+     * @param  string  $firstName  The contact's first name
+     * @param  string|null  $lastName  The contact's last name
+     */
+    public function upsertContact(string $chatId, string $firstName, ?string $lastName = null): Response
+    {
+        return $this->post('/contacts/upsert', array_filter([
+            'chat_id' => $chatId,
+            'first_name' => $firstName,
+            'last_name' => $lastName,
+        ], fn ($value) => $value !== null));
+    }
 }
