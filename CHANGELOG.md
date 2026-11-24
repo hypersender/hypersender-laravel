@@ -4,6 +4,11 @@ All notable changes to `hypersender-laravel` will be documented in this file.
 
 ## What's Changed
 
+* feat: add contacts methods and enterprise instance management by @osamanagi in https://github.com/hypersender/hypersender-laravel/pull/27
+
+**Full Changelog**: https://github.com/hypersender/hypersender-laravel/compare/v2.4.0...v2.5.0
+---
+
 * feat(whatsapp): add LID lookup methods by @osamanagi in https://github.com/hypersender/hypersender-laravel/pull/24
 
 **Full Changelog**: https://github.com/hypersender/hypersender-laravel/compare/v2.3.0...v2.4.0
