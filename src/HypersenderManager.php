@@ -2,6 +2,7 @@
 
 namespace Hypersender;
 
+use Hypersender\Services\EnterpriseService;
 use Hypersender\Services\HypersenderSmsService;
 use Hypersender\Services\HypersenderWhatsappService;
 use Hypersender\Services\OtpService;
@@ -12,6 +13,7 @@ class HypersenderManager
         protected HypersenderWhatsappService $whatsappService,
         protected HypersenderSmsService $smsService,
         protected OtpService $otpService,
+        protected EnterpriseService $enterpriseService,
     ) {}
 
     public function whatsapp(): HypersenderWhatsappService
@@ -27,5 +29,10 @@ class HypersenderManager
     public function otp(): OtpService
     {
         return $this->otpService;
+    }
+
+    public function enterprise(): EnterpriseService
+    {
+        return $this->enterpriseService;
     }
 }

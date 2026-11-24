@@ -41,5 +41,9 @@ class TestCase extends Orchestra
         config()->set('hypersender-config.otp_base_url', env('HYPERSENDER_OTP_BASE_URL', 'https://app.hypersender.com/api/otp/v2'));
         config()->set('hypersender-config.otp_api_key', 'test-api-key');
         config()->set('hypersender-config.otp_instance_id', 'test-otp-instance');
+
+        /* Enterprise */
+        config()->set('hypersender-config.enterprise_base_url', 'https://app.hypersender.com/api/whatsapp/v2');
+        config()->set('hypersender-config.enterprise_api_key', 'test-enterprise-key');
     }
 }
